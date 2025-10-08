@@ -11,7 +11,14 @@ const redirectToSpotifyAuthUrl = async (
     const { data } = await get(`/api/auth/spotify-auth-url`)
 
     redirect(data.url)
-  } catch {
+  } catch (error) {
+    if (error && typeof error === 'object' && 'digest' in error) {
+      const digest = (error as any).digest
+      if (digest?.startsWith('NEXT_REDIRECT')) {
+        throw error
+      }
+    }
+
     return {
       error: 'No response from server. Please try again later',
     }
