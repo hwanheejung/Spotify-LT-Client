@@ -6,15 +6,11 @@ import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import type { ReactNode } from 'react'
 import {
-  Handler,
   LEFT_PANNEL_SIZE,
-  LeftPanel,
   MAIN_PANNEL_SIZE,
-  MainPanel,
-  ResizableGroup,
+  ResizablePanel,
   RIGHT_PANNEL_SIZE,
-  RightPanel,
-} from '../_components/ResizablePanel'
+} from '@/shared/ui'
 
 export const metadata: Metadata = {
   title: 'Spotify',
@@ -51,14 +47,19 @@ export default async function AppLayout({
     <ApolloWrapper>
       <Header />
       <div className="flex-1 overflow-hidden px-3">
-        <ResizableGroup>
-          <LeftPanel defaultSize={defaultLayout[0]}>{yourLibrary}</LeftPanel>
-          <Handler />
-          <MainPanel defaultSize={defaultLayout[1]}>{main}</MainPanel>
-
-          <Handler />
-          <RightPanel defaultSize={defaultLayout[2]}>{sidebar}</RightPanel>
-        </ResizableGroup>
+        <ResizablePanel>
+          <ResizablePanel.Left defaultSize={defaultLayout[0]}>
+            {yourLibrary}
+          </ResizablePanel.Left>
+          <ResizablePanel.Handler />
+          <ResizablePanel.Main defaultSize={defaultLayout[1]}>
+            {main}
+          </ResizablePanel.Main>
+          <ResizablePanel.Handler />
+          <ResizablePanel.Right defaultSize={defaultLayout[2]}>
+            {sidebar}
+          </ResizablePanel.Right>
+        </ResizablePanel>
       </div>
       <PlayingBar />
     </ApolloWrapper>

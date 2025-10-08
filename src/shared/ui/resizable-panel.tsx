@@ -1,14 +1,21 @@
 'use client'
 
 import { throttle } from 'lodash'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { type ImperativePanelHandle, Panel } from 'react-resizable-panels'
+import {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import {
+  type ImperativePanelHandle,
+  Panel,
+  PanelGroup,
+  PanelResizeHandle,
+} from 'react-resizable-panels'
 import { useLayoutStore } from '@/lib/stores/layout.store'
-
-interface PanelProps {
-  children: React.ReactNode
-  defaultSize: number
-}
 
 export const LEFT_PANNEL_SIZE = Object.freeze({
   COLLAPSED: 6,
@@ -30,7 +37,22 @@ export const MAIN_PANNEL_SIZE = Object.freeze({
   MAX: 100,
 })
 
-export const LeftPanel = ({ children, defaultSize }: PanelProps) => {
+const ResizablePanelGroup = ({ children }: { children: ReactNode }) => {
+  const onLayout = (sizes: number[]) => {
+    document.cookie = `react-resizable-panels:layout=${JSON.stringify(sizes)}`
+  }
+  return (
+    <PanelGroup
+      direction="horizontal"
+      onLayout={onLayout}
+      className="gap-1 py-3"
+    >
+      {children}
+    </PanelGroup>
+  )
+}
+
+const ResizablePanelLeft = ({ children, defaultSize }: TPanelProps) => {
   const ref = useRef<ImperativePanelHandle>(null!)
   const { setLeftPanelRef, leftPanelState, setLeftPanelState } =
     useLayoutStore()
@@ -108,7 +130,7 @@ export const LeftPanel = ({ children, defaultSize }: PanelProps) => {
   )
 }
 
-export const MainPanel = ({ children, defaultSize }: PanelProps) => {
+const ResizablePanelMain = ({ children, defaultSize }: TPanelProps) => {
   const ref = useRef<ImperativePanelHandle>(null!)
   const { setMainPanelRef } = useLayoutStore()
 
@@ -129,7 +151,7 @@ export const MainPanel = ({ children, defaultSize }: PanelProps) => {
   )
 }
 
-export const RightPanel = ({ children, defaultSize }: PanelProps) => {
+const ResizablePanelRight = ({ children, defaultSize }: TPanelProps) => {
   const ref = useRef<ImperativePanelHandle>(null!)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const { setRightPanelRef, rightPanelState, setRightPanelState } =
@@ -190,4 +212,24 @@ export const RightPanel = ({ children, defaultSize }: PanelProps) => {
       {children}
     </Panel>
   )
+}
+
+const ResizablePanelHandler = () => (
+  <PanelResizeHandle
+    className="w-px hover:bg-gray-100"
+    aria-label="Resizable panel"
+  />
+)
+
+export const ResizablePanel = Object.assign(ResizablePanelGroup, {
+  Group: ResizablePanelGroup,
+  Left: ResizablePanelLeft,
+  Main: ResizablePanelMain,
+  Right: ResizablePanelRight,
+  Handler: ResizablePanelHandler,
+})
+
+type TPanelProps = {
+  children: ReactNode
+  defaultSize: number
 }
