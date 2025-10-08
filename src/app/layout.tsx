@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import '@/shared/styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'Spotify-LT',
@@ -7,14 +8,14 @@ export const metadata: Metadata = {
     'A Spotify lyrics translation and real-time synchronization tool',
 }
 
-interface RootLayoutProps {
-  children: ReactNode
-}
-
-export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
+export default function RootLayout({ children }: Readonly<TProps>) {
   return (
-    <html lang="ko">
+    <html lang="en">
       <body className="antialiased">{children}</body>
     </html>
   )
+}
+
+type TProps = {
+  children: ReactNode
 }

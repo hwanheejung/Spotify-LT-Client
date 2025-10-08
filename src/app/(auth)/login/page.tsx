@@ -1,63 +1,53 @@
-'use client'
-
-import { useState } from 'react'
+import { FaCheck, FaSpotify } from 'react-icons/fa'
 
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = useState(false)
-
-  const handleLogin = async () => {
-    setIsLoading(true)
-    // TODO: Spotify OAuth 로직 구현
-    console.log('Login clicked')
-    setIsLoading(false)
-  }
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-spotify-dark">
       <div className="max-w-md w-full space-y-8 p-8">
+        {/* Logo and Title */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-white mb-2">Spotify-LT</h1>
-          <p className="text-gray-400">로그인하여 음악을 즐기세요</p>
+          <div className="w-16 h-16 mb-6 bg-spotify-green rounded-full flex items-center justify-center mx-auto">
+            <FaSpotify size={36} className="text-white" />
+          </div>
+
+          <h1 className="text-4xl font-bold text-spotify-primary mb-2">
+            Spotify-LQ
+          </h1>
+          <p className="text-spotify-secondary text-lg">Lyrics Quizzes</p>
         </div>
 
+        {/* Premium Notice */}
+        <div className="bg-spotify-gray rounded-lg p-6 border border-spotify-light-gray">
+          <div className="flex items-start space-x-3">
+            <div className="flex-shrink-0 rounded-full bg-spotify-green p-1">
+              <FaCheck size={12} className="text-white" />
+            </div>
+            <div>
+              <h3 className="text-spotify-primary font-semibold mb-2">
+                Spotify Premium Required
+              </h3>
+              <p className="text-spotify-secondary text-sm leading-relaxed">
+                To use this application, you need an active Spotify Premium
+                subscription. This allows us to access your music library and
+                provide lyrics quizzes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Login Button */}
         <div className="mt-8">
-          <button
-            onClick={handleLogin}
-            disabled={isLoading}
-            className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isLoading ? (
-              <>
-                <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                로그인 중...
-              </>
-            ) : (
-              'Spotify로 로그인'
-            )}
+          <button className="w-full flex justify-center gap-2 items-center py-4 px-6 border border-transparent rounded-full shadow-sm text-base font-bold text-white bg-spotify-green hover:bg-spotify-green-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-spotify-green disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105">
+            <FaSpotify />
+            Connect with Spotify
           </button>
         </div>
 
-        <div className="text-center text-sm text-gray-400">
-          <p>마이그레이션 진행 중입니다</p>
+        {/* Footer */}
+        <div className="text-center text-sm text-spotify-muted">
+          <p>
+            By connecting, you agree to our Terms of Service and Privacy Policy
+          </p>
         </div>
       </div>
     </div>
