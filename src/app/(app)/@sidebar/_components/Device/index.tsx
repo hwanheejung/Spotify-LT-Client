@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client/react'
 import { GET_AVAILABLE_DEVICES } from '@/lib/queries/player.query'
 import type { DeviceDTO } from '@/types/player.types'
 import Header from '../Header'

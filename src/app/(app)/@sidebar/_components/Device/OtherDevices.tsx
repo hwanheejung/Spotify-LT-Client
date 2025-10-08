@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client/react'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { MdComputer, MdOutlineSpeaker } from 'react-icons/md'
 import { TRANSFER_PLAYBACK } from '@/lib/queries/player.query'

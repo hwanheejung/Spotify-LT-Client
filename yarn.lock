@@ -2133,7 +2133,7 @@ __metadata:
     "@types/react-dom": "npm:^18.0.11"
     "@types/spotify-web-playback-sdk": "npm:^0.1.19"
     framer-motion: "npm:^11.11.17"
-    graphql: "npm:^16.9.0"
+    graphql: "npm:^16.11.0"
     husky: "npm:^9.1.6"
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
@@ -2146,6 +2146,7 @@ __metadata:
     react-dom: "npm:^19.2.0"
     react-icons: "npm:^5.3.0"
     react-resizable-panels: "npm:^2.1.7"
+    rxjs: "npm:^7.8.2"
     server-only: "npm:^0.0.1"
     tailwind-merge: "npm:^2.5.4"
     tailwind-scrollbar-hide: "npm:^1.1.7"
@@ -3017,7 +3018,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:^16.9.0":
+"graphql@npm:^16.11.0":
   version: 16.11.0
   resolution: "graphql@npm:16.11.0"
   checksum: 10c0/124da7860a2292e9acf2fed0c71fc0f6a9b9ca865d390d112bdd563c1f474357141501c12891f4164fe984315764736ad67f705219c62f7580681d431a85db88
@@ -5185,6 +5186,15 @@ __metadata:
   dependencies:
     queue-microtask: "npm:^1.2.2"
   checksum: 10c0/200b5ab25b5b8b7113f9901bfe3afc347e19bb7475b267d55ad0eb86a62a46d77510cb0f232507c9e5d497ebda569a08a9867d0d14f57a82ad5564d991588b39
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.8.2":
+  version: 7.8.2
+  resolution: "rxjs@npm:7.8.2"
+  dependencies:
+    tslib: "npm:^2.1.0"
+  checksum: 10c0/1fcd33d2066ada98ba8f21fcbbcaee9f0b271de1d38dc7f4e256bfbc6ffcdde68c8bfb69093de7eeb46f24b1fb820620bf0223706cff26b4ab99a7ff7b2e2c45
   languageName: node
   linkType: hard
 

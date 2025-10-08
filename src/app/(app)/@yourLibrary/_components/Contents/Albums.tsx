@@ -1,6 +1,6 @@
 'use client'
 
-import { useSuspenseQuery } from '@apollo/client'
+import { useSuspenseQuery } from '@apollo/client/react'
 import { FlatList } from '@/components/flatlist'
 import { GET_ALBUMS_ARTISTS } from '@/lib/queries/albums.query'
 import { useLayoutStore } from '@/lib/stores/layout.store'

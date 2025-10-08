@@ -1,6 +1,6 @@
 'use client'
 
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client/react'
 import { useEffect, useMemo } from 'react'
 import { GET_QUEUE } from '@/lib/queries/player.query'
 import { useLayoutStore } from '@/lib/stores/layout.store'
