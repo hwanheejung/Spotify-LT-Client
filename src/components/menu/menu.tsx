@@ -1,9 +1,9 @@
 'use client'
 
-import { HTMLAttributes, ReactNode } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { MenuProvider } from './context'
-import { MenuOptions } from './types'
+import type { MenuOptions } from './types'
 
 interface MenuProps extends MenuOptions {
   children: ReactNode

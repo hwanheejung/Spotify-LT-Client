@@ -1,6 +1,6 @@
+import { lazy, Suspense } from 'react'
 import { PreloadQuery } from '@/lib/graphql/apollo-client'
 import { GET_SEARCH_RESULTS } from '@/lib/queries/search.query'
-import { Suspense, lazy } from 'react'
 import ResultSkeleton from './_components/Result.skelecon'
 
 const ResultContainer = lazy(() => import('./_components/ResultContainer'))

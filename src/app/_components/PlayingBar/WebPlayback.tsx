@@ -2,9 +2,9 @@
 
 'use client'
 
+import { type ReactNode, useCallback, useEffect, useRef } from 'react'
 import { getSpotifyToken } from '@/lib/api/auth'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
-import { ReactNode, useCallback, useEffect, useRef } from 'react'
 
 const WebPlayback = ({ children }: { children: ReactNode }) => {
   const {
@@ -126,7 +126,14 @@ const WebPlayback = ({ children }: { children: ReactNode }) => {
     addPlayerListeners()
     connectPlayer()
     handlePlayerError()
-  }, [setPlayer, playerName, setDeviceId, setIsActive])
+  }, [
+    setPlayer,
+    playerName,
+    addPlayerListeners,
+    connectPlayer,
+    handlePlayerError,
+    waitForSpotifySDK,
+  ])
 
   useEffect(() => {
     initializePlayer()

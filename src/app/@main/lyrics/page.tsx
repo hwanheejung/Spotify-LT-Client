@@ -1,9 +1,9 @@
 'use client'
 
-import { GET_LYRICS } from '@/lib/queries/player.query'
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client/react'
 import { useMemo } from 'react'
-import { Lyrics as LyricsType } from '@/types/player.types'
+import { GET_LYRICS } from '@/lib/queries/player.query'
+import type { Lyrics as LyricsType } from '@/types/player.types'
 import Locked from './_components/Locked'
 import Lyrics from './_components/Lyrics'
 import NoData from './_components/NoData'

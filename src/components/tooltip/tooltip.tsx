@@ -1,10 +1,14 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 'use client'
 
-import { HTMLAttributes, ReactNode, useCallback, useRef, useState } from 'react'
+import {
+  type HTMLAttributes,
+  type ReactNode,
+  useCallback,
+  useRef,
+  useState,
+} from 'react'
 import TooltipPopper from './tooltip-popper'
-import { TooltipOptions } from './types'
+import type { TooltipOptions } from './types'
 
 export interface TooltipProps extends TooltipOptions {
   children: ReactNode
@@ -21,7 +25,7 @@ const Tooltip = (props: TooltipProps) => {
   } = props
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const triggerRef = useRef<HTMLElement | null>(null)
+  const triggerRef = useRef<HTMLButtonElement | null>(null)
 
   const openTooltip = useCallback(() => setIsOpen(true), [])
   const closeTooltip = useCallback(() => setIsOpen(false), [])
@@ -30,7 +34,7 @@ const Tooltip = (props: TooltipProps) => {
 
   return (
     <div className="relative w-fit">
-      <span
+      <button
         ref={triggerRef}
         onMouseEnter={openTooltip}
         onMouseLeave={closeTooltip}
@@ -40,10 +44,12 @@ const Tooltip = (props: TooltipProps) => {
           event.stopPropagation()
           closeTooltip()
         }}
-        className={className}
+        className={`inline-block ${className}`}
+        type="button"
+        aria-label={label}
       >
         {children}
-      </span>
+      </button>
 
       <TooltipPopper
         isOpen={isOpen}

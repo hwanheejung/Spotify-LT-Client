@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidateTag } from 'next/cache'
-import { RequestInit } from 'next/dist/server/web/spec-extension/request'
+import type { RequestInit } from 'next/dist/server/web/spec-extension/request'
 import { cookies } from 'next/headers'
 
 const ERRORS = {

@@ -1,10 +1,10 @@
-import { GET_AVAILABLE_DEVICES } from '@/lib/queries/player.query'
-import { DeviceDTO } from '@/types/player.types'
 import { useQuery } from '@apollo/client'
+import { GET_AVAILABLE_DEVICES } from '@/lib/queries/player.query'
+import type { DeviceDTO } from '@/types/player.types'
 import Header from '../Header'
 import CurrentDevice from './CurrentDevice'
-import OtherDevices from './OtherDevices'
 import CurrentDeviceSkeleton from './CurrentDevice.skeleton'
+import OtherDevices from './OtherDevices'
 import OtherDevicesSkeleton from './OtherDevices.skeleton'
 
 const Device = () => {

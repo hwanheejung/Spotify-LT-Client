@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { auth } from './lib/utils/auth/auth'
 
 function isMatch(pathname: string, urls: string[]) {

@@ -1,10 +1,10 @@
 'use client'
 
-import { MotionProps, motion } from 'framer-motion'
-import { HTMLAttributes, ReactNode } from 'react'
+import { type MotionProps, motion } from 'framer-motion'
+import type { HTMLAttributes, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { createPulseVariants } from './transition'
-import { SkeletonOptions } from './types'
+import type { SkeletonOptions } from './types'
 
 interface SkeletonProps extends SkeletonOptions, MotionProps {
   className?: HTMLAttributes<HTMLDivElement>['className']

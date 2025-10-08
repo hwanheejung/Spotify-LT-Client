@@ -1,10 +1,10 @@
+import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import type { ReactNode } from 'react'
 import { ApolloWrapper } from '@/app/_components/ApolloWrapper'
 import Header from '@/app/_components/Header'
 import PlayingBar from '@/app/_components/PlayingBar'
 import { auth } from '@/lib/utils/auth/auth'
-import type { Metadata } from 'next'
-import { cookies } from 'next/headers'
-import { ReactNode } from 'react'
 import '@/shared/styles/globals.css'
 import {
   Handler,
@@ -12,8 +12,8 @@ import {
   LeftPanel,
   MAIN_PANNEL_SIZE,
   MainPanel,
-  RIGHT_PANNEL_SIZE,
   ResizableGroup,
+  RIGHT_PANNEL_SIZE,
   RightPanel,
 } from './_components/ResizablePanel'
 

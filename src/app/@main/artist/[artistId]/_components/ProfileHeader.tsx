@@ -1,8 +1,8 @@
 'use client'
 
+import { useSuspenseQuery } from '@apollo/client/react'
 import { GET_ARTIST } from '@/lib/queries/artists.query'
-import { ArtistDTO } from '@/types/artists.types'
-import { useSuspenseQuery } from '@apollo/client'
+import type { ArtistDTO } from '@/types/artists.types'
 
 const ProfileHeader = ({ artistId }: { artistId: string }) => {
   const { data } = useSuspenseQuery<{ artist: ArtistDTO }>(GET_ARTIST, {

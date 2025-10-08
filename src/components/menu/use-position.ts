@@ -1,12 +1,12 @@
-import { MotionStyle } from 'framer-motion'
+import type { MotionStyle } from 'framer-motion'
 import {
-  CSSProperties,
+  type CSSProperties,
   useCallback,
   useLayoutEffect,
   useRef,
   useState,
 } from 'react'
-import { MenuOptions, Placement } from './types'
+import type { MenuOptions, Placement } from './types'
 
 interface useMenuPositionProps extends Required<MenuOptions> {
   triggerRef: React.RefObject<HTMLElement | null>
@@ -45,7 +45,7 @@ const useMenuPosition = (props: useMenuPositionProps) => {
 
     setStyles(offsets[placement])
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [placement, triggerRef, spacing, isOpen])
+  }, [placement, triggerRef, spacing])
 
   useLayoutEffect(() => {
     calculatePosition()

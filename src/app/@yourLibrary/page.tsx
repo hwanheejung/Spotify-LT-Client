@@ -1,9 +1,13 @@
-import { auth } from '@/lib/utils/auth/auth'
 import { cookies } from 'next/headers'
+import { auth } from '@/lib/utils/auth/auth'
 import Contents from './_components/Contents'
 import CreatePlaylist from './_components/CreatePlaylist'
-import { IFilterType, IViewAs, MenuProvider } from './_components/MenuContext'
 import Header from './_components/Header'
+import {
+  type IFilterType,
+  type IViewAs,
+  MenuProvider,
+} from './_components/MenuContext'
 
 async function getDefault(): Promise<{ filter: IFilterType; viewAs: IViewAs }> {
   const cookieStore = await cookies()

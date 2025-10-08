@@ -13,9 +13,12 @@ const Search = () => {
   const router = useRouter()
   const pathname = usePathname()
 
-  const onSearch = useCallback((searchTerm: string) => {
-    router.push(`/search/${searchTerm}`)
-  }, [])
+  const onSearch = useCallback(
+    (searchTerm: string) => {
+      router.push(`/search/${searchTerm}`)
+    },
+    [router.push],
+  )
 
   const debouncedSearch = useMemo(
     () =>

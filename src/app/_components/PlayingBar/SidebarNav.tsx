@@ -1,13 +1,17 @@
 'use client'
 
-import { Placement, Tooltip, TooltipOptions } from '@/components/tooltip'
-import { useLayoutStore } from '@/lib/stores/layout.store'
 import { usePathname, useRouter } from 'next/navigation'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { AiOutlinePlaySquare } from 'react-icons/ai'
 import { HiOutlineDeviceMobile } from 'react-icons/hi'
 import { HiOutlineQueueList } from 'react-icons/hi2'
 import { TbMicrophone2 } from 'react-icons/tb'
+import {
+  type Placement,
+  Tooltip,
+  type TooltipOptions,
+} from '@/components/tooltip'
+import { useLayoutStore } from '@/lib/stores/layout.store'
 import Button from './IconButton'
 
 interface SidebarNavItemProps extends Pick<TooltipOptions, 'placement'> {

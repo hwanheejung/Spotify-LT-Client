@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import ReactDOM from 'react-dom'
 import { tooltipVariants } from './transition'
-import { TooltipOptions } from './types'
+import type { TooltipOptions } from './types'
 import useTooltipPosition from './use-position'
 
 export interface TooltipPopperProps extends Required<TooltipOptions> {

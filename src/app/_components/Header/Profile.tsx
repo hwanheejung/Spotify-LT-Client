@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import {
   Divider,
   Menu,
@@ -8,7 +9,6 @@ import {
   MenuList,
 } from '@/components/menu'
 import { Tooltip } from '@/components/tooltip'
-import { useRouter } from 'next/navigation'
 
 const Profile = ({ logout }: { logout: () => Promise<void> }) => {
   const router = useRouter()

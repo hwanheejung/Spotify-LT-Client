@@ -1,9 +1,9 @@
 'use client'
 
-import { useLayoutStore } from '@/lib/stores/layout.store'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ImperativePanelHandle, Panel } from 'react-resizable-panels'
 import { throttle } from 'lodash'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { type ImperativePanelHandle, Panel } from 'react-resizable-panels'
+import { useLayoutStore } from '@/lib/stores/layout.store'
 
 interface PanelProps {
   children: React.ReactNode
@@ -114,7 +114,7 @@ export const MainPanel = ({ children, defaultSize }: PanelProps) => {
 
   useEffect(() => {
     if (ref.current) setMainPanelRef(ref)
-  }, [ref, setMainPanelRef])
+  }, [setMainPanelRef])
 
   return (
     <Panel
@@ -138,7 +138,7 @@ export const RightPanel = ({ children, defaultSize }: PanelProps) => {
   // Set panel reference
   useEffect(() => {
     if (ref.current) setRightPanelRef(ref)
-  }, [ref, setRightPanelRef])
+  }, [setRightPanelRef])
 
   // Observe resize changes
   useEffect(() => {
@@ -177,7 +177,7 @@ export const RightPanel = ({ children, defaultSize }: PanelProps) => {
       if (isCollapsed && rightPanelState) setRightPanelState(null)
       if (!isCollapsed && !rightPanelState) setRightPanelState('NOW_PLAYING')
     }
-  }, [isCollapsed])
+  }, [isCollapsed, rightPanelState, setRightPanelState])
 
   return (
     <Panel

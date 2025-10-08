@@ -1,8 +1,8 @@
 'use client'
 
+import { LiaTimesSolid } from 'react-icons/lia'
 import { Tooltip } from '@/components/tooltip'
 import { useLayoutStore } from '@/lib/stores/layout.store'
-import { LiaTimesSolid } from 'react-icons/lia'
 
 interface HeaderProps {
   title: string

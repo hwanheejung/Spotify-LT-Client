@@ -1,10 +1,10 @@
-import { Section } from '@/components/section'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useMemo } from 'react'
-import { Album } from './Albums'
-import { Artist } from './Artists'
-import { Track } from './Songs'
+import { Section } from '@/components/section'
+import type { Album } from './Albums'
+import type { Artist } from './Artists'
+import type { Track } from './Songs'
 
 export type TopResultProps = {
   type: 'track' | 'album' | 'artist'

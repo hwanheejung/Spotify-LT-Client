@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { PanelGroup } from 'react-resizable-panels'
 
 const ResizableGroup = ({ children }: { children: ReactNode }) => {

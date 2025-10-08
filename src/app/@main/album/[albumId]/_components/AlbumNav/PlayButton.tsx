@@ -1,10 +1,10 @@
 'use client'
 
-import { START_PLAYBACK } from '@/lib/queries/player.query'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client/react'
 import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { twMerge } from 'tailwind-merge'
+import { START_PLAYBACK } from '@/lib/queries/player.query'
+import { usePlaybackStore } from '@/lib/stores/playback.store'
 
 interface PlayButtonProps {
   albumId: string

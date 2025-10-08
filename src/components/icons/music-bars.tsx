@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type MusicBarsProps = HTMLAttributes<HTMLDivElement>
@@ -16,7 +16,7 @@ const MusicBars = ({ className, ...rest }: MusicBarsProps) => {
     <div {...rest} className={twMerge('flex items-end gap-[1.5px]', className)}>
       {barScales.map((scalePattern, index) => (
         <motion.div
-          key={index}
+          key={crypto.randomUUID()}
           className="h-3.5 w-[2.5px] origin-bottom bg-spotifyGreen"
           initial={{ scaleY: scalePattern[0] }}
           animate={{

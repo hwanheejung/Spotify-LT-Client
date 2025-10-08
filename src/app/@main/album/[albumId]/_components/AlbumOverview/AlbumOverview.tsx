@@ -1,12 +1,12 @@
 'use client'
 
+import { useSuspenseQuery } from '@apollo/client/react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { GET_ALBUM } from '@/lib/queries/albums.query'
 import { capitalizeFirstLetter } from '@/lib/utils/capitalize-first-letter'
 import { parseDate } from '@/lib/utils/parse-date'
-import { AlbumDTO } from '@/types/albums.types'
-import { useSuspenseQuery } from '@apollo/client'
-import Image from 'next/image'
-import Link from 'next/link'
+import type { AlbumDTO } from '@/types/albums.types'
 
 const AlbumOverview = ({ albumId }: { albumId: string }) => {
   const { data } = useSuspenseQuery<{ album: AlbumDTO }>(GET_ALBUM, {

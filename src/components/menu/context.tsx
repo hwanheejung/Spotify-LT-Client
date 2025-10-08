@@ -1,12 +1,12 @@
 'use client'
 
-import { MotionStyle } from 'framer-motion'
+import type { MotionStyle } from 'framer-motion'
 import {
-  Dispatch,
-  ReactNode,
-  RefObject,
-  SetStateAction,
   createContext,
+  type Dispatch,
+  type ReactNode,
+  type RefObject,
+  type SetStateAction,
   useCallback,
   useContext,
   useEffect,
@@ -14,8 +14,8 @@ import {
   useRef,
   useState,
 } from 'react'
+import type { MenuOptions } from './types'
 import useMenuPosition from './use-position'
-import { MenuOptions } from './types'
 
 interface MenuContextProps {
   isOpen: boolean
@@ -52,7 +52,7 @@ export const MenuProvider = ({
 
   useEffect(() => {
     setStyles(_styles)
-  }, [isOpen, setStyles, _styles])
+  }, [_styles])
 
   const value = useMemo(
     () => ({
@@ -63,7 +63,7 @@ export const MenuProvider = ({
       menuRef,
       styles,
     }),
-    [isOpen, _styles, triggerRef, menuRef, styles],
+    [isOpen, menuRef, styles, toggleMenu, closeMenu],
   )
   return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>
 }

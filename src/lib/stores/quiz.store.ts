@@ -1,5 +1,5 @@
-import { LevelId, Status } from '@/types/quiz.types'
 import { create } from 'zustand'
+import type { LevelId, Status } from '@/types/quiz.types'
 
 interface QuizStore {
   status: Status

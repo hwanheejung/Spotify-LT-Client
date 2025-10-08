@@ -1,7 +1,7 @@
-import { usePlaybackStore } from '@/lib/stores/playback.store'
-import { CurrentlyPlayingDTO, QueueItemDTO } from '@/types/player.types'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePlaybackStore } from '@/lib/stores/playback.store'
+import type { CurrentlyPlayingDTO, QueueItemDTO } from '@/types/player.types'
 
 interface TrackProps {
   track: QueueItemDTO | CurrentlyPlayingDTO
@@ -21,7 +21,7 @@ const Track = ({ track }: TrackProps) => {
       />
       <div className="flex-1 overflow-hidden">
         <p
-          className={`block overflow-hidden text-ellipsis whitespace-nowrap ${currentTrack!.id === track.id && 'text-spotifyGreen'}`}
+          className={`block overflow-hidden text-ellipsis whitespace-nowrap ${currentTrack?.id === track.id && 'text-spotifyGreen'}`}
         >
           {track.name}
         </p>

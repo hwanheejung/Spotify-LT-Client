@@ -1,7 +1,7 @@
 'use client'
 
 import { twMerge } from 'tailwind-merge'
-import { IFilterType, useMenu } from '../MenuContext'
+import { type IFilterType, useMenu } from '../MenuContext'
 
 const FilterButton = ({ type }: { type: IFilterType }) => {
   const { filter, setFilter } = useMenu()
@@ -12,6 +12,7 @@ const FilterButton = ({ type }: { type: IFilterType }) => {
 
   return (
     <button
+      type="button"
       onClick={handleClick}
       className={twMerge(
         'rounded-full px-3 py-1 text-xs text-gray-0',

@@ -1,8 +1,8 @@
-import { MusicBars } from '@/components/icons'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
-import { DeviceDTO } from '@/types/player.types'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { MdComputer, MdOutlineSpeaker } from 'react-icons/md'
+import { MusicBars } from '@/components/icons'
+import { usePlaybackStore } from '@/lib/stores/playback.store'
+import type { DeviceDTO } from '@/types/player.types'
 
 const CurrentDevice = (props: DeviceDTO) => {
   const { name, type } = props

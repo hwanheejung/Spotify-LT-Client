@@ -1,5 +1,5 @@
-import { RefObject } from 'react'
-import { ImperativePanelHandle } from 'react-resizable-panels'
+import type { RefObject } from 'react'
+import type { ImperativePanelHandle } from 'react-resizable-panels'
 import { create } from 'zustand'
 
 interface LayoutStore {

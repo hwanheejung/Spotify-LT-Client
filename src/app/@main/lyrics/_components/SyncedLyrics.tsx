@@ -1,5 +1,5 @@
-import { usePlaybackStore } from '@/lib/stores/playback.store'
 import { useEffect, useRef } from 'react'
+import { usePlaybackStore } from '@/lib/stores/playback.store'
 
 interface SyncedLine {
   time: number // ms
@@ -55,14 +55,17 @@ const SyncedLyrics = ({ lyrics }: { lyrics: string }) => {
       <div className="whitespace-pre-line text-xl font-bold text-gray-100 filter">
         {parsedLyrics.map((line, index) => (
           <p
-            key={index}
+            key={`${line.time}-${index}`}
             ref={(el) => {
               lineRefs.current[index] = el
             }}
             className={`${
-              currentTime! >= line.time &&
-              (index === parsedLyrics.length - 1 ||
-                currentTime! < parsedLyrics[index + 1].time)
+              currentTime &&
+              currentTime >= line.time &&
+              (
+                index === parsedLyrics.length - 1 ||
+                  currentTime < parsedLyrics[index + 1].time
+              )
                 ? 'text-gray-0'
                 : ''
             }`}

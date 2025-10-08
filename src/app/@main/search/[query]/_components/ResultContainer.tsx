@@ -1,13 +1,13 @@
 'use client'
 
-import { useSuspenseQuery } from '@apollo/client'
-import { GET_SEARCH_RESULTS } from '@/lib/queries/search.query'
+import { useSuspenseQuery } from '@apollo/client/react'
 import { useMemo } from 'react'
+import { GET_SEARCH_RESULTS } from '@/lib/queries/search.query'
 import { calculateTextSimilarity } from '@/lib/utils/calculate-text-similarity'
-import Albums, { Album } from './Albums'
-import Artists, { Artist } from './Artists'
-import Songs, { Track } from './Songs'
-import TopResult, { TopResultProps } from './TopResult'
+import Albums, { type Album } from './Albums'
+import Artists, { type Artist } from './Artists'
+import Songs, { type Track } from './Songs'
+import TopResult, { type TopResultProps } from './TopResult'
 
 type SearchDTO = {
   tracks: Track[]

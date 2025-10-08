@@ -1,11 +1,11 @@
 'use client'
 
+import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { MusicBars } from '@/components/icons'
 import { Tooltip } from '@/components/tooltip'
 import useTrackControl from '@/lib/hooks/useTrackControl'
 import { formatDuration } from '@/lib/utils/format-duration'
-import { AlbumTrackDTO } from '@/types/albums.types'
-import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
+import type { AlbumTrackDTO } from '@/types/albums.types'
 
 interface TrackItemProps {
   track: AlbumTrackDTO
@@ -68,7 +68,9 @@ const TrackItem = ({ track, albumId }: TrackItemProps) => {
       </div>
       <div className="flex-1 py-1 pl-2">
         <h2
-          className={`font-semibold ${isCurrent ? 'text-spotifyGreen' : 'text-gray-0'}`}
+          className={`font-semibold ${
+            isCurrent ? 'text-spotifyGreen' : 'text-gray-0'
+          }`}
         >
           {track.name}
         </h2>

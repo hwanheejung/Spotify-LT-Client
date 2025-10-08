@@ -1,7 +1,7 @@
-import { useQuizStore } from '@/lib/stores/quiz.store'
-import { Level, LevelId, levels } from '@/types/quiz.types'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { useQuizStore } from '@/lib/stores/quiz.store'
+import { type Level, type LevelId, levels } from '@/types/quiz.types'
 
 interface LevelButtonProps {
   currentLevelId: LevelId

@@ -1,9 +1,9 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import { useLayoutStore } from '@/lib/stores/layout.store'
 import { capitalizeFirstLetter } from '@/lib/utils/capitalize-first-letter'
 import { getTimeAgo } from '@/lib/utils/get-time-ago'
-import { AlbumItemDTO } from '@/types/albums.types'
-import Image from 'next/image'
-import Link from 'next/link'
+import type { AlbumItemDTO } from '@/types/albums.types'
 
 export const AlbumCollapsedView = ({
   album,
@@ -58,7 +58,9 @@ export const AlbumListView = ({
         </div>
       </div>
       <div
-        className={`flex-shrink-0 text-xs text-gray-200 ${leftPanelState !== 'EXPANDED' && 'hidden'}`}
+        className={`flex-shrink-0 text-xs text-gray-200 ${
+          leftPanelState !== 'EXPANDED' && 'hidden'
+        }`}
       >
         {getTimeAgo(added_at)}
       </div>
@@ -82,7 +84,9 @@ export const AlbumCompactView = ({
         {album.name}
       </div>
       <div
-        className={`flex-shrink-0 text-xs text-gray-200 ${leftPanelState !== 'EXPANDED' && 'hidden'}`}
+        className={`flex-shrink-0 text-xs text-gray-200 ${
+          leftPanelState !== 'EXPANDED' && 'hidden'
+        }`}
       >
         {getTimeAgo(added_at)}
       </div>

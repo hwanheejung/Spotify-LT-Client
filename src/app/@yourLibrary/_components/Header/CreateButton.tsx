@@ -1,3 +1,6 @@
+import { FaRegFolder } from 'react-icons/fa6'
+import { GoPlus } from 'react-icons/go'
+import { TbMusicPlus } from 'react-icons/tb'
 import {
   Divider,
   Menu,
@@ -6,9 +9,6 @@ import {
   MenuList,
 } from '@/components/menu'
 import { Tooltip } from '@/components/tooltip'
-import { FaRegFolder } from 'react-icons/fa6'
-import { GoPlus } from 'react-icons/go'
-import { TbMusicPlus } from 'react-icons/tb'
 
 const CreateButton = () => {
   return (

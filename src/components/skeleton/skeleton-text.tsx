@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Skeleton from './skeleton'
 
@@ -30,7 +30,7 @@ const SkeletonText = (props: SkeletonTextProps) => {
     <div className="flex flex-col" style={{ gap: spacing }}>
       {Array.from({ length: lines }).map((_, index) => (
         <Skeleton
-          key={index}
+          key={crypto.randomUUID()}
           className={twMerge('rounded-sm', className)}
           style={{
             width: getWidth(index),

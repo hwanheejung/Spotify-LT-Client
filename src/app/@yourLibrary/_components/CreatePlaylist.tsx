@@ -9,7 +9,9 @@ const CreatePlaylist = () => {
       <p>It&apos;s easy, we&apos;ll help you</p>
       <div className="flex flex-col">
         <Tooltip label="Create">
-          <button className="bg-gray-0 text-gray-900">Create Playlist</button>
+          <button type="button" className="bg-gray-0 text-gray-900">
+            Create Playlist
+          </button>
         </Tooltip>
       </div>
     </div>

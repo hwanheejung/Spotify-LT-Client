@@ -1,5 +1,5 @@
-import { Skeleton, SkeletonText } from '@/components/skeleton'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
+import { Skeleton, SkeletonText } from '@/components/skeleton'
 
 const DeviceItem = () => (
   <div className="flex items-center gap-2 py-3">

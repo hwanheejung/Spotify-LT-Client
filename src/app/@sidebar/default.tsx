@@ -1,13 +1,13 @@
 'use client'
 
+import { useQuery } from '@apollo/client'
+import { useEffect, useMemo } from 'react'
 import { GET_QUEUE } from '@/lib/queries/player.query'
 import { useLayoutStore } from '@/lib/stores/layout.store'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
-import { useQuery } from '@apollo/client'
-import { useEffect, useMemo } from 'react'
+import Device from './_components/Device'
 import NowPlaying from './_components/NowPlaying'
 import Queue from './_components/Queue'
-import Device from './_components/Device'
 
 const DefaultSidebar = () => {
   const { rightPanelState } = useLayoutStore()

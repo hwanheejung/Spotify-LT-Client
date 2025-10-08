@@ -1,7 +1,7 @@
-import { Section } from '@/components/section'
-import { parseDate } from '@/lib/utils/parse-date'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Section } from '@/components/section'
+import { parseDate } from '@/lib/utils/parse-date'
 
 export type Album = {
   id: string

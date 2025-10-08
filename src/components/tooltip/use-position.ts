@@ -1,12 +1,12 @@
-import { MotionStyle } from 'framer-motion'
+import type { MotionStyle } from 'framer-motion'
 import {
-  CSSProperties,
+  type CSSProperties,
   useCallback,
   useLayoutEffect,
   useRef,
   useState,
 } from 'react'
-import { Placement, TooltipOptions } from './types'
+import type { Placement, TooltipOptions } from './types'
 
 interface UseTooltipPositionProps
   extends Required<Omit<TooltipOptions, 'label'>> {
@@ -82,7 +82,7 @@ const useTooltipPosition = (props: UseTooltipPositionProps) => {
 
     setStyles(offsets[placement])
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [placement, spacing, triggerRef, popperRef, isOpen])
+  }, [placement, spacing, triggerRef])
 
   useLayoutEffect(() => {
     calculatePosition()

@@ -1,12 +1,13 @@
-import { Tooltip } from '@/components/tooltip'
-import { useLayoutStore } from '@/lib/stores/layout.store'
 import { GoArrowLeft, GoArrowRight } from 'react-icons/go'
 import { IoLibrarySharp } from 'react-icons/io5'
+import { Tooltip } from '@/components/tooltip'
+import { useLayoutStore } from '@/lib/stores/layout.store'
 
 export const CollapsePanel = () => {
   const { leftPanelRef } = useLayoutStore()
   return (
     <button
+      type="button"
       aria-label="Collapse left panel"
       className="flex gap-2 hover:text-gray-0"
       onClick={() => leftPanelRef?.current?.collapse()}
@@ -21,6 +22,7 @@ export const ExpandPanel = () => {
   const { leftPanelRef } = useLayoutStore()
   return (
     <button
+      type="button"
       aria-label="Expand left panel"
       className="flex gap-2 text-gray-200 hover:text-gray-0"
       onClick={() => leftPanelRef?.current?.expand()}
@@ -33,7 +35,7 @@ export const ExpandPanel = () => {
 export const TogglePanel = () => {
   const { leftPanelState, setLeftPanelState } = useLayoutStore()
   return (
-    <button aria-label="Toggle left panel">
+    <button type="button" aria-label="Toggle left panel">
       {leftPanelState === 'EXPANDED' ? (
         <Tooltip label="Show Less" placement="top">
           <GoArrowLeft

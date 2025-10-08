@@ -1,6 +1,6 @@
-import { ArtistDTO } from '@/types/artists.types'
 import Image from 'next/image'
 import Link from 'next/link'
+import type { ArtistDTO } from '@/types/artists.types'
 
 export const ArtistCollapsedView = ({ artist }: { artist: ArtistDTO }) => (
   <Link

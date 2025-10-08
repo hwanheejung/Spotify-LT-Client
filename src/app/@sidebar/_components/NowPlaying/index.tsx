@@ -1,4 +1,4 @@
-import { CurrentlyPlayingDTO } from '@/types/player.types'
+import type { CurrentlyPlayingDTO } from '@/types/player.types'
 import Header from '../Header'
 import { CurrentTrack, CurrentTrackSkeleton } from './CurrentTrack'
 import Quiz from './Quiz'

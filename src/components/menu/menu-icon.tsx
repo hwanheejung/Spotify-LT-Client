@@ -1,4 +1,9 @@
-import { Children, HTMLAttributes, cloneElement, isValidElement } from 'react'
+import {
+  Children,
+  cloneElement,
+  type HTMLAttributes,
+  isValidElement,
+} from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type MenuIconProps = HTMLAttributes<HTMLSpanElement>

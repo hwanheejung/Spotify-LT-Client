@@ -1,11 +1,11 @@
 import { ApolloLink, HttpLink } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
 import {
   ApolloClient,
   InMemoryCache,
   registerApolloClient,
 } from '@apollo/experimental-nextjs-app-support'
 import { cookies } from 'next/headers'
-import { setContext } from '@apollo/client/link/context'
 
 const cookieLink = setContext(async (_, { headers }) => {
   const cookieStore = await cookies()

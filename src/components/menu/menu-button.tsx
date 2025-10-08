@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 import { useMenu } from './context'
 
 interface MenuButtonProps extends ComponentPropsWithoutRef<'button'> {

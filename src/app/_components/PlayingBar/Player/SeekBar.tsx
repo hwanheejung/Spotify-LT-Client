@@ -1,9 +1,15 @@
 'use client'
 
+import { debounce } from 'lodash'
+import {
+  type ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
 import { formatDuration } from '@/lib/utils/format-duration'
-import { debounce } from 'lodash'
-import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react'
 
 const SeekBar = () => {
   const { player, currentTrack } = usePlaybackStore()
@@ -65,7 +71,9 @@ const SeekBar = () => {
         aria-disabled={isDisabled}
         style={
           {
-            '--progress': `${duration === 0 ? 0 : (position / duration) * 100}%`,
+            '--progress': `${
+              duration === 0 ? 0 : (position / duration) * 100
+            }%`,
           } as React.CSSProperties
         }
       />

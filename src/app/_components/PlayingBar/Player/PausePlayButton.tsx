@@ -1,10 +1,10 @@
 'use client'
 
-import { Tooltip } from '@/components/tooltip'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
 import { useMemo } from 'react'
 import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { twMerge } from 'tailwind-merge'
+import { Tooltip } from '@/components/tooltip'
+import { usePlaybackStore } from '@/lib/stores/playback.store'
 
 const PausePlayButton = () => {
   const { player, isPaused, currentTrack } = usePlaybackStore()
