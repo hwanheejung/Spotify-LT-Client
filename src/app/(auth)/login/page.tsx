@@ -1,4 +1,5 @@
 import { FaCheck, FaSpotify } from 'react-icons/fa'
+import { LoginButton } from '@/features/login'
 
 export default function LoginPage() {
   return (
@@ -17,7 +18,7 @@ export default function LoginPage() {
         </div>
 
         {/* Premium Notice */}
-        <div className="bg-spotify-gray rounded-lg p-6 border border-spotify-light-gray">
+        <div className="bg-spotify-gray rounded-lg p-6 mb-8 border border-spotify-light-gray">
           <div className="flex items-start space-x-3">
             <div className="flex-shrink-0 rounded-full bg-spotify-green p-1">
               <FaCheck size={12} className="text-white" />
@@ -35,13 +36,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Login Button */}
-        <div className="mt-8">
-          <button className="w-full flex justify-center gap-2 items-center py-4 px-6 border border-transparent rounded-full shadow-sm text-base font-bold text-white bg-spotify-green hover:bg-spotify-green-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-spotify-green disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105">
-            <FaSpotify />
-            Connect with Spotify
-          </button>
-        </div>
+        <LoginButton />
 
         {/* Footer */}
         <div className="text-center text-sm text-spotify-muted">
