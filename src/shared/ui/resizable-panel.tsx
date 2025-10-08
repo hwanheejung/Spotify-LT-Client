@@ -3,6 +3,7 @@
 import { throttle } from 'lodash'
 import {
   ReactNode,
+  RefObject,
   useCallback,
   useEffect,
   useMemo,
@@ -15,7 +16,7 @@ import {
   PanelGroup,
   PanelResizeHandle,
 } from 'react-resizable-panels'
-import { useLayoutStore } from '@/lib/stores/layout.store'
+import { create } from 'zustand'
 
 export const LEFT_PANNEL_SIZE = Object.freeze({
   COLLAPSED: 6,
@@ -36,6 +37,36 @@ export const MAIN_PANNEL_SIZE = Object.freeze({
   MIN: 30,
   MAX: 100,
 })
+
+export const useLayoutStore = create<TLayoutStore>((set) => ({
+  leftPanelRef: undefined,
+  mainPanelRef: undefined,
+  rightPanelRef: undefined,
+  setLeftPanelRef: (ref) => set({ leftPanelRef: ref }),
+  setMainPanelRef: (ref) => set({ mainPanelRef: ref }),
+  setRightPanelRef: (ref) => set({ rightPanelRef: ref }),
+
+  leftPanelState: 'DEFAULT',
+  setLeftPanelState: (state) => set({ leftPanelState: state }),
+
+  rightPanelState: 'NOW_PLAYING',
+  setRightPanelState: (state) => set({ rightPanelState: state }),
+}))
+
+type TLayoutStore = {
+  leftPanelRef?: RefObject<ImperativePanelHandle>
+  mainPanelRef?: RefObject<ImperativePanelHandle>
+  rightPanelRef?: RefObject<ImperativePanelHandle>
+  setLeftPanelRef: (ref: RefObject<ImperativePanelHandle>) => void
+  setMainPanelRef: (ref: RefObject<ImperativePanelHandle>) => void
+  setRightPanelRef: (ref: RefObject<ImperativePanelHandle>) => void
+
+  leftPanelState: 'COLLAPSED' | 'DEFAULT' | 'EXPANDED'
+  setLeftPanelState: (state: 'COLLAPSED' | 'DEFAULT' | 'EXPANDED') => void
+
+  rightPanelState: 'NOW_PLAYING' | 'QUEUE' | 'DEVICE' | null
+  setRightPanelState: (state: 'NOW_PLAYING' | 'QUEUE' | 'DEVICE' | null) => void
+}
 
 const ResizablePanelGroup = ({ children }: { children: ReactNode }) => {
   const onLayout = (sizes: number[]) => {

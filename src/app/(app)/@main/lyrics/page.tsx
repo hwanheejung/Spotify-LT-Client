@@ -2,8 +2,8 @@
 
 import { useQuery } from '@apollo/client/react'
 import { useMemo } from 'react'
-import { GET_LYRICS } from '@/lib/queries/player.query'
-import type { Lyrics as LyricsType } from '@/types/player.types'
+import { GET_LYRICS } from '@/features/play-track'
+import type { LyricsDTO } from '@/shared/api'
 import Locked from './_components/Locked'
 import Lyrics from './_components/Lyrics'
 import NoData from './_components/NoData'
@@ -12,7 +12,7 @@ import SyncedLyrics from './_components/SyncedLyrics'
 const LyricsPage = () => {
   const { data, loading } = useQuery(GET_LYRICS)
 
-  const lyrics: LyricsType = useMemo(
+  const lyrics: LyricsDTO = useMemo(
     () => data?.player?.currentTrack?.lyrics,
     [data],
   )

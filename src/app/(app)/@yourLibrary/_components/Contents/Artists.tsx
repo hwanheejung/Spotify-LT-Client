@@ -3,8 +3,8 @@
 import { useSuspenseQuery } from '@apollo/client/react'
 import { FlatList } from '@/components/flatlist'
 import { GET_ALBUMS_ARTISTS } from '@/lib/queries/albums.query'
-import { useLayoutStore } from '@/lib/stores/layout.store'
-import type { ArtistDTO } from '@/types/artists.types'
+import type { ArtistDTO } from '@/shared/api'
+import { useLayoutStore } from '@/shared/ui'
 import { useMenu } from '../MenuContext'
 import {
   ArtistCollapsedView,

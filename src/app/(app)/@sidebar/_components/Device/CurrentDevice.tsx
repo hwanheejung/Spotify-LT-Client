@@ -2,10 +2,9 @@ import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { MdComputer, MdOutlineSpeaker } from 'react-icons/md'
 import { MusicBars } from '@/components/icons'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
-import type { DeviceDTO } from '@/types/player.types'
+import type { DeviceDTO } from '@/shared/api'
 
-const CurrentDevice = (props: DeviceDTO) => {
-  const { name, type } = props
+const CurrentDevice = ({ name, type }: DeviceDTO) => {
   const { playerName, isPaused } = usePlaybackStore()
 
   return (

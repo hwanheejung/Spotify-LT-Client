@@ -3,7 +3,7 @@
 import { useMutation } from '@apollo/client/react'
 import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { twMerge } from 'tailwind-merge'
-import { START_PLAYBACK } from '@/lib/queries/player.query'
+import { START_PLAYBACK } from '@/features/play-track'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
 
 interface PlayButtonProps {

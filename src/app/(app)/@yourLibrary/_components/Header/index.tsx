@@ -1,7 +1,7 @@
 'use client'
 
 import { FiSearch } from 'react-icons/fi'
-import { useLayoutStore } from '@/lib/stores/layout.store'
+import { useLayoutStore } from '@/shared/ui'
 import ChangeView from './ChangeView'
 import CreateButton from './CreateButton'
 import FilterType from './FilterType'

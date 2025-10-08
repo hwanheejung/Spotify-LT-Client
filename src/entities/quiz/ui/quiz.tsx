@@ -1,34 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useQuizStore } from '@/lib/stores/quiz.store'
+import { useQuizStore } from '@/entities/quiz'
 import { type Level, type LevelId, levels } from '@/types/quiz.types'
-
-interface LevelButtonProps {
-  currentLevelId: LevelId
-  level: Level
-  setLevel: (level: LevelId) => void
-}
-
-const LevelButton = ({ currentLevelId, level, setLevel }: LevelButtonProps) => {
-  return (
-    <button
-      onClick={() => setLevel(level.id)}
-      className="flex items-center justify-between gap-1"
-    >
-      <div className="flex flex-1 flex-col items-start text-start">
-        <span className="">{level.name}</span>
-        <p className="text-xs text-gray-100">{level.description}</p>
-      </div>
-      <div
-        className={`flex h-5 w-5 items-center justify-center rounded-full border-2 ${currentLevelId === level.id ? 'border-spotifyGreen' : 'border-gray-300'} `}
-      >
-        <div
-          className={`h-2 w-2 rounded-full ${currentLevelId === level.id && 'bg-spotifyGreen'}`}
-        />
-      </div>
-    </button>
-  )
-}
 
 const Quiz = ({ trackId }: { trackId: string }) => {
   const [levelId, setLevelId] = useState<LevelId>(0)
@@ -67,4 +40,41 @@ const Quiz = ({ trackId }: { trackId: string }) => {
   )
 }
 
-export default Quiz
+export { Quiz }
+
+const LevelButton = ({
+  currentLevelId,
+  level,
+  setLevel,
+}: TLevelButtonProps) => {
+  return (
+    <button
+      onClick={() => setLevel(level.id)}
+      className="flex items-center justify-between gap-1"
+    >
+      <div className="flex flex-1 flex-col items-start text-start">
+        <span className="">{level.name}</span>
+        <p className="text-xs text-gray-100">{level.description}</p>
+      </div>
+      <div
+        className={`flex h-5 w-5 items-center justify-center rounded-full border-2 ${
+          currentLevelId === level.id
+            ? 'border-spotifyGreen'
+            : 'border-gray-300'
+        } `}
+      >
+        <div
+          className={`h-2 w-2 rounded-full ${
+            currentLevelId === level.id && 'bg-spotifyGreen'
+          }`}
+        />
+      </div>
+    </button>
+  )
+}
+
+type TLevelButtonProps = {
+  currentLevelId: LevelId
+  level: Level
+  setLevel: (level: LevelId) => void
+}

@@ -1,6 +1,6 @@
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client/react'
 import { useRef } from 'react'
-import { START_PLAYBACK } from '../queries/player.query'
+import { START_PLAYBACK } from '@/features/play-track'
 import { usePlaybackStore } from '../stores/playback.store'
 
 type PlaybackVariables =

@@ -1,5 +1,5 @@
 import { FlatList } from '@/components/flatlist'
-import type { CurrentlyPlayingDTO, QueueItemDTO } from '@/types/player.types'
+import type { CurrentlyPlayingDTO, QueueItemDTO } from '@/shared/api'
 import Header from '../Header'
 import Track from './Track'
 import TrackSkeleton from './Track.skeleton'

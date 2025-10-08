@@ -1,14 +1,9 @@
 'use client'
 
 import { LiaTimesSolid } from 'react-icons/lia'
-import { useLayoutStore } from '@/lib/stores/layout.store'
-import { Tooltip } from '@/shared/ui'
+import { Tooltip, useLayoutStore } from '@/shared/ui'
 
-interface HeaderProps {
-  title: string
-}
-
-const Header = ({ title }: HeaderProps) => {
+const Header = ({ title }: TProps) => {
   const { setRightPanelState } = useLayoutStore()
 
   return (
@@ -27,3 +22,7 @@ const Header = ({ title }: HeaderProps) => {
 }
 
 export default Header
+
+type TProps = {
+  title: string
+}

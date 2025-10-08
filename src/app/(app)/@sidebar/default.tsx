@@ -2,11 +2,11 @@
 
 import { useQuery } from '@apollo/client/react'
 import { useEffect, useMemo } from 'react'
-import { GET_QUEUE } from '@/lib/queries/player.query'
-import { useLayoutStore } from '@/lib/stores/layout.store'
+import { GET_QUEUE } from '@/features/play-track'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
+import { useLayoutStore } from '@/shared/ui'
 import Device from './_components/Device'
-import NowPlaying from './_components/NowPlaying'
+import { NowPlaying } from './_components/NowPlaying'
 import Queue from './_components/Queue'
 
 const DefaultSidebar = () => {

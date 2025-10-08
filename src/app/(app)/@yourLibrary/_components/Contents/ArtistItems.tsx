@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { ArtistDTO } from '@/types/artists.types'
+import type { ArtistDTO } from '@/shared/api'
 
 export const ArtistCollapsedView = ({ artist }: { artist: ArtistDTO }) => (
   <Link

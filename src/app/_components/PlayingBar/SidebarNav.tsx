@@ -6,8 +6,12 @@ import { AiOutlinePlaySquare } from 'react-icons/ai'
 import { HiOutlineDeviceMobile } from 'react-icons/hi'
 import { HiOutlineQueueList } from 'react-icons/hi2'
 import { TbMicrophone2 } from 'react-icons/tb'
-import { useLayoutStore } from '@/lib/stores/layout.store'
-import { Tooltip, type TPlacement, type TTooltipOptions } from '@/shared/ui'
+import {
+  Tooltip,
+  type TPlacement,
+  type TTooltipOptions,
+  useLayoutStore,
+} from '@/shared/ui'
 import Button from './IconButton'
 
 interface SidebarNavItemProps extends Pick<TTooltipOptions, 'placement'> {

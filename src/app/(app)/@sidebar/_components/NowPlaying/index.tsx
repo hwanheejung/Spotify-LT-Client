@@ -1,14 +1,9 @@
-import type { CurrentlyPlayingDTO } from '@/types/player.types'
+import { Quiz } from '@/entities/quiz'
+import type { CurrentlyPlayingDTO } from '@/shared/api'
 import Header from '../Header'
 import { CurrentTrack, CurrentTrackSkeleton } from './CurrentTrack'
-import Quiz from './Quiz'
 
-interface NowPlayingProps {
-  track?: CurrentlyPlayingDTO
-  loading: boolean
-}
-
-const NowPlaying = ({ loading, track }: NowPlayingProps) => {
+const NowPlaying = ({ loading, track }: TProps) => {
   return (
     <div className="flex h-full flex-col">
       <Header title={track ? track.album.name : 'Select the track'} />
@@ -25,4 +20,10 @@ const NowPlaying = ({ loading, track }: NowPlayingProps) => {
     </div>
   )
 }
-export default NowPlaying
+
+export { NowPlaying }
+
+type TProps = {
+  track?: CurrentlyPlayingDTO
+  loading: boolean
+}

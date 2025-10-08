@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client/react'
-import { GET_AVAILABLE_DEVICES } from '@/lib/queries/player.query'
-import type { DeviceDTO } from '@/types/player.types'
+import { GET_AVAILABLE_DEVICES } from '@/entities/devices'
+import type { DeviceDTO } from '@/shared/api'
 import Header from '../Header'
 import CurrentDevice from './CurrentDevice'
 import CurrentDeviceSkeleton from './CurrentDevice.skeleton'

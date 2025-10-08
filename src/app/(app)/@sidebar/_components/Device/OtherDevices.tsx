@@ -1,8 +1,8 @@
 import { useMutation } from '@apollo/client/react'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { MdComputer, MdOutlineSpeaker } from 'react-icons/md'
-import { TRANSFER_PLAYBACK } from '@/lib/queries/player.query'
-import type { DeviceDTO } from '@/types/player.types'
+import { TRANSFER_PLAYBACK } from '@/features/play-track'
+import type { DeviceDTO } from '@/shared/api'
 import OtherDevicesSkeleton from './OtherDevices.skeleton'
 
 const OtherDevices = ({

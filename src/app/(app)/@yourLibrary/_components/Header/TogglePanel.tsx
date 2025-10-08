@@ -1,7 +1,6 @@
 import { GoArrowLeft, GoArrowRight } from 'react-icons/go'
 import { IoLibrarySharp } from 'react-icons/io5'
-import { useLayoutStore } from '@/lib/stores/layout.store'
-import { Tooltip } from '@/shared/ui'
+import { Tooltip, useLayoutStore } from '@/shared/ui'
 
 export const CollapsePanel = () => {
   const { leftPanelRef } = useLayoutStore()
