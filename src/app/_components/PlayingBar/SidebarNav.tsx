@@ -6,15 +6,11 @@ import { AiOutlinePlaySquare } from 'react-icons/ai'
 import { HiOutlineDeviceMobile } from 'react-icons/hi'
 import { HiOutlineQueueList } from 'react-icons/hi2'
 import { TbMicrophone2 } from 'react-icons/tb'
-import {
-  type Placement,
-  Tooltip,
-  type TooltipOptions,
-} from '@/components/tooltip'
 import { useLayoutStore } from '@/lib/stores/layout.store'
+import { Tooltip, type TPlacement, type TTooltipOptions } from '@/shared/ui'
 import Button from './IconButton'
 
-interface SidebarNavItemProps extends Pick<TooltipOptions, 'placement'> {
+interface SidebarNavItemProps extends Pick<TTooltipOptions, 'placement'> {
   label: string
   selected: boolean
   onClick: () => void
@@ -67,7 +63,7 @@ const SidebarNav = () => {
       selected: rightPanelState === 'DEVICE',
       onClick: () => setRightPanelState('DEVICE'),
       icon: <HiOutlineDeviceMobile size="1.2rem" />,
-      placement: 'top-end' as Placement,
+      placement: 'top-end' as TPlacement,
     },
   ]
 

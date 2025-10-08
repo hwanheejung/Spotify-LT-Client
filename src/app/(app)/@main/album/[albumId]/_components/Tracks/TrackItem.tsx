@@ -2,9 +2,9 @@
 
 import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { MusicBars } from '@/components/icons'
-import { Tooltip } from '@/components/tooltip'
 import useTrackControl from '@/lib/hooks/useTrackControl'
 import { formatDuration } from '@/lib/utils/format-duration'
+import { Tooltip } from '@/shared/ui'
 import type { AlbumTrackDTO } from '@/types/albums.types'
 
 interface TrackItemProps {

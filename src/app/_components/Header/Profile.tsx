@@ -8,10 +8,11 @@ import {
   MenuItem,
   MenuList,
 } from '@/components/menu'
-import { Tooltip } from '@/components/tooltip'
+import { Tooltip } from '@/shared/ui'
 
 const Profile = ({ logout }: { logout: () => Promise<void> }) => {
   const router = useRouter()
+
   return (
     <Menu placement="bottom-end">
       <Tooltip label="Name" placement="bottom">

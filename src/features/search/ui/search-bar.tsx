@@ -8,7 +8,7 @@ import { IoFileTraySharp } from 'react-icons/io5'
 import { LiaTimesSolid } from 'react-icons/lia'
 import { twMerge } from 'tailwind-merge'
 
-const Search = () => {
+const SearchBar = () => {
   const [value, setValue] = useState<string>('')
   const router = useRouter()
   const pathname = usePathname()
@@ -75,4 +75,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export { SearchBar }

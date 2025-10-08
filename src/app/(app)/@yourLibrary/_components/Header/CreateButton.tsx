@@ -8,7 +8,7 @@ import {
   MenuItem,
   MenuList,
 } from '@/components/menu'
-import { Tooltip } from '@/components/tooltip'
+import { Tooltip } from '@/shared/ui'
 
 const CreateButton = () => {
   return (

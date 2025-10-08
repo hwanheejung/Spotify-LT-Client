@@ -1,4 +1,4 @@
-import { SkeletonCircle, SkeletonText } from '@/components/skeleton'
+import { SkeletonCircle, SkeletonText } from '@/shared/ui'
 
 const ContentsSkeleton = () => {
   return (

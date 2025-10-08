@@ -3,8 +3,8 @@
 import { useMemo } from 'react'
 import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { twMerge } from 'tailwind-merge'
-import { Tooltip } from '@/components/tooltip'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
+import { Tooltip } from '@/shared/ui'
 
 const PausePlayButton = () => {
   const { player, isPaused, currentTrack } = usePlaybackStore()

@@ -1,5 +1,5 @@
 import { IoPhonePortraitOutline } from 'react-icons/io5'
-import { Skeleton, SkeletonText } from '@/components/skeleton'
+import { Skeleton, SkeletonText } from '@/shared/ui'
 
 const CurrentDeviceSkeleton = () => (
   <div className="rounded-md bg-gradient-to-b from-spotifyGreen/20 to-gray-900 px-3 py-4 pr-16">

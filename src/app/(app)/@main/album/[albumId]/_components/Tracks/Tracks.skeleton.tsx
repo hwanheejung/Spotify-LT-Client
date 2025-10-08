@@ -1,4 +1,4 @@
-import { Skeleton, SkeletonText } from '@/components/skeleton'
+import { Skeleton, SkeletonText } from '@/shared/ui'
 
 const TrackItemSkeleton = () => (
   <div className="flex items-center gap-2 rounded-sm pr-5">

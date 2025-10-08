@@ -1,4 +1,4 @@
-import { Skeleton, SkeletonText } from '@/components/skeleton'
+import { Skeleton, SkeletonText } from '@/shared/ui'
 
 const AlbumOverviewSkeleton = () => (
   <div className="px-5 pb-7 pt-10">
