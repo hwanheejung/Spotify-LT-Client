@@ -1,8 +1,8 @@
 'use server'
 
-import { revalidateTag } from 'next/cache'
 import type { RequestInit } from 'next/dist/server/web/spec-extension/request'
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 const ERRORS = {
   FETCH_FAILED: '데이터를 불러오는데 실패했습니다.',
@@ -36,7 +36,11 @@ const fetchApi = async (
   const res = await fetch(getBaseUrl(useMocked) + path, fetchOptions)
 
   if (!res.ok) {
-    revalidateTag('session-status')
+    // 401 에러 시 로그인 페이지로 리다이렉트
+    if (res.status === 401) {
+      redirect('/login')
+    }
+
     throw new Error(
       `[ERROR] ${res.status} - ${res.statusText}. ${errorMessage}`,
     )

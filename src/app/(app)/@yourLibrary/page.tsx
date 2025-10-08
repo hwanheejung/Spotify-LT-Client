@@ -1,7 +1,5 @@
 import { cookies } from 'next/headers'
-import { auth } from '@/lib/utils/auth/auth'
 import Contents from './_components/Contents'
-import CreatePlaylist from './_components/CreatePlaylist'
 import Header from './_components/Header'
 import {
   type IFilterType,
@@ -21,19 +19,14 @@ async function getDefault(): Promise<{ filter: IFilterType; viewAs: IViewAs }> {
 }
 
 const YourLibraryPage = async () => {
-  const { isAuthenticated } = await auth()
   const { filter, viewAs } = await getDefault()
 
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-lg bg-gray-700">
-      {isAuthenticated ? (
-        <MenuProvider defaultFilter={filter} defaultViewAs={viewAs}>
-          <Header />
-          <Contents />
-        </MenuProvider>
-      ) : (
-        <CreatePlaylist />
-      )}
+      <MenuProvider defaultFilter={filter} defaultViewAs={viewAs}>
+        <Header />
+        <Contents />
+      </MenuProvider>
     </div>
   )
 }

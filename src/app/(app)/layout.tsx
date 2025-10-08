@@ -1,11 +1,10 @@
-import type { Metadata } from 'next'
-import { cookies } from 'next/headers'
-import type { ReactNode } from 'react'
 import { ApolloWrapper } from '@/app/_components/ApolloWrapper'
 import Header from '@/app/_components/Header'
 import PlayingBar from '@/app/_components/PlayingBar'
-import { auth } from '@/lib/utils/auth/auth'
 import '@/shared/styles/globals.css'
+import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import type { ReactNode } from 'react'
 import {
   Handler,
   LEFT_PANNEL_SIZE,
@@ -47,7 +46,6 @@ export default async function AppLayout({
   sidebar,
 }: Readonly<AppLayoutProps>) {
   const defaultLayout = await getDefaultLayout()
-  const { isAuthenticated } = await auth()
 
   return (
     <ApolloWrapper>
@@ -57,12 +55,9 @@ export default async function AppLayout({
           <LeftPanel defaultSize={defaultLayout[0]}>{yourLibrary}</LeftPanel>
           <Handler />
           <MainPanel defaultSize={defaultLayout[1]}>{main}</MainPanel>
-          {isAuthenticated && (
-            <>
-              <Handler />
-              <RightPanel defaultSize={defaultLayout[2]}>{sidebar}</RightPanel>
-            </>
-          )}
+
+          <Handler />
+          <RightPanel defaultSize={defaultLayout[2]}>{sidebar}</RightPanel>
         </ResizableGroup>
       </div>
       <PlayingBar />

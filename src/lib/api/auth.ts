@@ -1,26 +1,18 @@
 'use server'
 
-import { revalidateTag } from 'next/cache'
+import { redirect } from 'next/navigation'
 import { deleteApi, get } from './base'
 
-export const getSpotifyUrl = async () => {
-  const { data } = await get(`/api/auth/spotify-auth-url`)
-  return data.url
-}
-
 export const logout = async () => {
-  await deleteApi('/api/auth/logout')
-  revalidateTag('session-status')
-}
-
-export const verifySession = async (): Promise<boolean> => {
-  const { data } = await get('/api/auth/status', {
-    next: {
-      revalidate: 60 * 60, // 1 hour
-      tags: ['session-status'],
-    },
-  })
-  return data.authenticated
+  try {
+    await deleteApi('/api/auth/logout')
+    // 성공 시 홈으로 리다이렉트
+    redirect('/')
+  } catch (error) {
+    // 401이면 이미 로그아웃된 상태이거나 에러 발생
+    // 로그인 페이지로 리다이렉트
+    redirect('/login')
+  }
 }
 
 export const getSpotifyToken = async (): Promise<string> => {
