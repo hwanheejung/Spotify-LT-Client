@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const GET_ALBUMS_ARTISTS = gql`
-  query ($offset: Int = 0, $limit: Int = 20, $after: String) {
+  query GetAlbumsArtists($offset: Int = 0, $limit: Int = 20, $after: String) {
     savedAlbums: savedAlbums(offset: $offset, limit: $limit) {
       added_at
       album {
@@ -27,7 +27,7 @@ export const GET_ALBUMS_ARTISTS = gql`
 `
 
 export const GET_ALBUM = gql`
-  query ($albumId: String!) {
+  query GetAlbum($albumId: String!) {
     album(albumId: $albumId) {
       id
       name
@@ -57,7 +57,7 @@ export const GET_ALBUM = gql`
 `
 
 export const GET_NEW_RELEASES = gql`
-  query ($offset: Int = 0, $limit: Int = 4) {
+  query GetNewReleases($offset: Int = 0, $limit: Int = 4) {
     newReleases(offset: $offset, limit: $limit) {
       id
       name

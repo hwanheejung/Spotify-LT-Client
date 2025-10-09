@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const GET_AVAILABLE_DEVICES = gql`
-  query {
+  query GetAvailableDevices {
     availableDevices {
       id
       name

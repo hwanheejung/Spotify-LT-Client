@@ -1,19 +1,19 @@
-import { gql } from '@apollo/client'
+import { gql } from '@/shared/__graphql-generated__'
 
-export const TRANSFER_PLAYBACK = gql`
-  mutation ($deviceId: String!) {
+export const TRANSFER_PLAYBACK = gql(`
+  mutation TransferPlayback($deviceId: String!) {
     playbackTransfer(deviceId: $deviceId)
   }
-`
+`)
 
-export const START_PLAYBACK = gql`
-  mutation ($input: StartResumePlaybackInput!) {
+export const START_PLAYBACK = gql(`
+  mutation StartPlayback($input: StartResumePlaybackInput!) {
     startResumePlayback(input: $input)
   }
-`
+`)
 
-export const GET_LYRICS = gql`
-  query {
+export const GET_LYRICS = gql(`
+  query GetLyrics {
     player {
       currentTrack {
         lyrics {
@@ -28,10 +28,10 @@ export const GET_LYRICS = gql`
       }
     }
   }
-`
+`)
 
-export const GET_QUEUE = gql`
-  query {
+export const GET_QUEUE = gql(`
+  query GetQueue {
     player {
       currentTrack {
         id
@@ -69,4 +69,4 @@ export const GET_QUEUE = gql`
       }
     }
   }
-`
+`)

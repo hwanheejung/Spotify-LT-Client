@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 import { FaSpotify } from 'react-icons/fa'
 import { match, P } from 'ts-pattern'
 import { GET_LYRICS } from '@/features/play-track'
-import { LyricsDTO } from '@/shared/api'
+import { GetLyricsQuery } from '@/shared/__graphql-generated__'
 import { PlainLyrics } from './plain-lyrics'
 import { SyncedLyrics } from './synced-lyrics'
 
@@ -20,22 +20,27 @@ const TrackLyrics = () => {
 export { TrackLyrics }
 
 const LyricsContent = () => {
-  const { data } = useSuspenseQuery<{
-    player: { currentTrack: { lyrics: LyricsDTO } }
-  }>(GET_LYRICS)
+  const { data } = useSuspenseQuery<GetLyricsQuery>(GET_LYRICS)
 
-  const lyrics = data?.player?.currentTrack?.lyrics
+  const lyrics = data.player?.currentTrack?.lyrics
 
   return match(lyrics)
+    .with(undefined, () => <NoData />)
     .with({ available: false }, () => <NoData />)
     .with({ locked: true }, () => <Locked />)
     .with(
       {
         data: { syncedLyrics: P.when((lyrics) => lyrics && lyrics.length > 0) },
       },
-      (lyrics) => <SyncedLyrics lyrics={lyrics.data.syncedLyrics} />,
+      (lyrics) => <SyncedLyrics lyrics={lyrics.data.syncedLyrics!} />,
     )
-    .otherwise((lyrics) => <PlainLyrics lyrics={lyrics.data.plainLyrics} />)
+    .with(
+      {
+        data: { plainLyrics: P.when((lyrics) => lyrics && lyrics.length > 0) },
+      },
+      (lyrics) => <PlainLyrics lyrics={lyrics.data.plainLyrics!} />,
+    )
+    .otherwise(() => <NoData />)
 }
 
 const NoData = () => (

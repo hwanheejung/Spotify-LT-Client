@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const GET_SEARCH_RESULTS = gql`
-  query ($query: String!) {
+  query GetSearchResults($query: String!) {
     search(query: $query) {
       albums {
         id
