@@ -1,8 +1,8 @@
 'use client'
 
 import { match, P } from 'ts-pattern'
-import { FlatList } from '@/components/flatlist'
 import type { GetQueueQuery } from '@/shared/__graphql-generated__/dto'
+import { FlatList } from '@/shared/ui'
 import Header from '../Header'
 import Track from './Track'
 import TrackSkeleton from './Track.skeleton'

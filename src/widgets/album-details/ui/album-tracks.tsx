@@ -2,13 +2,13 @@
 
 import { useSuspenseQuery } from '@apollo/client/react'
 import { match, P } from 'ts-pattern'
-import { FlatList } from '@/components/flatlist'
 import { AlbumTrack, AlbumTrackSkeleton } from '@/entities/track'
-import { GET_ALBUM } from '@/lib/queries/albums.query'
 import type {
   GetAlbumQuery,
   AlbumTrack as TAlbumTrack,
 } from '@/shared/__graphql-generated__'
+import { FlatList } from '@/shared/ui'
+import { GET_ALBUM } from '../model/queries'
 
 const Tracks = ({ albumId }: { albumId: string }) => {
   const { data } = useSuspenseQuery<GetAlbumQuery>(GET_ALBUM, {

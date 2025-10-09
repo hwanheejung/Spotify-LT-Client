@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { GET_SEARCH_RESULTS, SearchResultsSkeleton } from '@/features/search'
-import { PreloadQuery } from '@/lib/graphql/apollo-client'
+import { PreloadQuery } from '@/shared/graphql/apollo-client'
 
 const SearchResults = lazy(() =>
   import('@/features/search/ui/search-results').then((module) => ({

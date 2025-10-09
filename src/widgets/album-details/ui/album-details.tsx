@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { PreloadQuery } from '@/lib/graphql/apollo-client'
+import { PreloadQuery } from '@/shared/graphql/apollo-client'
 import { GET_ALBUM } from '../model/queries'
 import { AlbumOverview, AlbumOverviewSkeleton } from './album-overview'
 import { Tracks, TracksSkeleton } from './album-tracks'

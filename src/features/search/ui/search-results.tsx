@@ -6,9 +6,9 @@ import { match, P } from 'ts-pattern'
 import type { GetSearchResultsQuery } from '@/shared/__graphql-generated__/dto'
 import { calculateTextSimilarity } from '../lib/calculate-text-similarity'
 import { GET_SEARCH_RESULTS } from '../model/queries'
-import { Albums } from './albums'
-import { Artists } from './artists'
-import { Songs } from './Songs'
+import { Albums } from './albums-temp'
+import { Artists } from './artists-temp'
+import { Songs } from './songs-temp'
 import { TopResult, type TopResultProps } from './top-result'
 
 type SearchData = NonNullable<GetSearchResultsQuery['search']>

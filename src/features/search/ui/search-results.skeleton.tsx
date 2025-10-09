@@ -1,5 +1,5 @@
-import { Section } from '@/components/section'
 import { Skeleton, SkeletonCircle, SkeletonText } from '@/shared/ui'
+import { Section } from './section'
 
 const SearchResultsSkeleton = () => (
   <div>

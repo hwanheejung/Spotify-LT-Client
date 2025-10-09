@@ -5,11 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { match, P } from 'ts-pattern'
-import { GET_ALBUM } from '@/lib/queries/albums.query'
 import type { GetAlbumQuery } from '@/shared/__graphql-generated__'
 import { capitalizeFirstLetter } from '@/shared/lib/text'
 import { parseDate } from '@/shared/lib/time'
 import { Skeleton, SkeletonText } from '@/shared/ui'
+import { GET_ALBUM } from '../model/queries'
 
 const AlbumOverview = ({ albumId }: { albumId: string }) => {
   return (

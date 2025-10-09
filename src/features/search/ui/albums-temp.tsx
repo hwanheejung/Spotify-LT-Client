@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { match, P } from 'ts-pattern'
-import { Section } from '@/components/section'
 import type { GetSearchResultsQuery } from '@/shared/__graphql-generated__/dto'
 import { parseDate } from '@/shared/lib/time'
+import { Section } from './section'
 
 type SearchData = NonNullable<GetSearchResultsQuery['search']>
 type Album = NonNullable<NonNullable<SearchData['albums']>[number]>

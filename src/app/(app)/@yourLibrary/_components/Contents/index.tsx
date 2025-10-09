@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
-import { PreloadQuery } from '@/lib/graphql/apollo-client'
 import { GET_ALBUMS_ARTISTS } from '@/lib/queries/albums.query'
+import { PreloadQuery } from '@/shared/graphql/apollo-client'
 import Albums from './Albums'
 import Artists from './Artists'
 import ContentsSkeleton from './Contents.skeleton'

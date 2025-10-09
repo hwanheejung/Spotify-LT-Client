@@ -1,5 +1,5 @@
 import { GET_LYRICS } from '@/features/play-track'
-import { PreloadQuery } from '@/lib/graphql/apollo-client'
+import { PreloadQuery } from '@/shared/graphql/apollo-client'
 import { TrackLyrics } from '@/widgets/track-lyrics'
 
 const LyricsPage = () => {

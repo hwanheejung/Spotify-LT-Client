@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { GET_ARTIST } from '@/entities/artist'
-import { PreloadQuery } from '@/lib/graphql/apollo-client'
+import { PreloadQuery } from '@/shared/graphql/apollo-client'
 
 const ProfileHeader = lazy(() =>
   import('./_ui/ProfileHeader').then((module) => ({

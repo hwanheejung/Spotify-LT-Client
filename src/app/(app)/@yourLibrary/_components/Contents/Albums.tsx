@@ -3,10 +3,9 @@
 import { useSuspenseQuery } from '@apollo/client/react'
 import { Suspense } from 'react'
 import { match } from 'ts-pattern'
-import { FlatList } from '@/components/flatlist'
 import { GET_ALBUMS_ARTISTS } from '@/lib/queries/albums.query'
 import type { GetAlbumsArtistsQuery } from '@/shared/__graphql-generated__'
-import { useLayoutStore } from '@/shared/ui'
+import { FlatList, useLayoutStore } from '@/shared/ui'
 import { useMenu } from '../MenuContext'
 import {
   AlbumCollapsedView,

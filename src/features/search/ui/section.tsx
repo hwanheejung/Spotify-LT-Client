@@ -1,19 +1,7 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
-type SectionProps = {
-  title: string
-  children: ReactNode
-} & (
-  | { hasLink: false }
-  | {
-      hasLink: true
-      href: string
-      showShowAllText?: boolean
-    }
-)
-
-const Section = (props: SectionProps) => {
+const Section = (props: TProps) => {
   const { title, children, hasLink } = props
 
   if (!hasLink)
@@ -45,4 +33,16 @@ const Section = (props: SectionProps) => {
   )
 }
 
-export default Section
+export { Section }
+
+type TProps = {
+  title: string
+  children: ReactNode
+} & (
+  | { hasLink: false }
+  | {
+      hasLink: true
+      href: string
+      showShowAllText?: boolean
+    }
+)
