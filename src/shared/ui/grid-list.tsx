@@ -4,11 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { FlatList, type FlatListProps } from './flat-list'
 
-interface GridListProps<T> extends FlatListProps<T> {
-  maxNum?: number
-  wrap?: boolean
-  itemMinWidth?: number
-}
 const GridList = <T,>(props: GridListProps<T>) => {
   const {
     maxNum = 6,
@@ -53,4 +48,10 @@ const GridList = <T,>(props: GridListProps<T>) => {
   )
 }
 
-export default GridList
+export { GridList }
+
+type GridListProps<T> = FlatListProps<T> & {
+  maxNum?: number
+  wrap?: boolean
+  itemMinWidth?: number
+}

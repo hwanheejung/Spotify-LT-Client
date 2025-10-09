@@ -280,6 +280,32 @@ export type TrackResult = {
   name?: Maybe<Scalars['String']['output']>
 }
 
+export type GetArtistQueryVariables = Exact<{
+  artistId: Scalars['String']['input']
+}>
+
+export type GetArtistQuery = {
+  __typename?: 'Query'
+  artist?: {
+    __typename?: 'Artist'
+    id: string
+    name?: string | null
+    type?: string | null
+    genres?: Array<string | null> | null
+    followers?: {
+      __typename?: 'Followers'
+      href?: string | null
+      total?: number | null
+    } | null
+    images?: Array<{
+      __typename?: 'Image'
+      url?: string | null
+      height?: number | null
+      width?: number | null
+    } | null> | null
+  } | null
+}
+
 export type GetAvailableDevicesQueryVariables = Exact<{ [key: string]: never }>
 
 export type GetAvailableDevicesQuery = {
@@ -383,6 +409,68 @@ export type GetQueueQuery = {
   } | null
 }
 
+export type GetSearchResultsQueryVariables = Exact<{
+  query: Scalars['String']['input']
+}>
+
+export type GetSearchResultsQuery = {
+  __typename?: 'Query'
+  search?: {
+    __typename?: 'SearchResult'
+    albums?: Array<{
+      __typename?: 'AlbumResult'
+      id?: string | null
+      name?: string | null
+      album_type?: string | null
+      release_date?: string | null
+      images?: Array<{
+        __typename?: 'Image'
+        url?: string | null
+        height?: number | null
+        width?: number | null
+      } | null> | null
+      artists?: Array<{
+        __typename?: 'ArtistResult'
+        id?: string | null
+        name?: string | null
+      } | null> | null
+    } | null> | null
+    artists?: Array<{
+      __typename?: 'ArtistResult'
+      id?: string | null
+      name?: string | null
+      type?: string | null
+      images?: Array<{
+        __typename?: 'Image'
+        url?: string | null
+        height?: number | null
+        width?: number | null
+      } | null> | null
+    } | null> | null
+    tracks?: Array<{
+      __typename?: 'TrackResult'
+      id?: string | null
+      name?: string | null
+      duration_ms?: number | null
+      album?: {
+        __typename?: 'AlbumResult'
+        id?: string | null
+        images?: Array<{
+          __typename?: 'Image'
+          url?: string | null
+          height?: number | null
+          width?: number | null
+        } | null> | null
+      } | null
+      artists?: Array<{
+        __typename?: 'ArtistResult'
+        id?: string | null
+        name?: string | null
+      } | null> | null
+    } | null> | null
+  } | null
+}
+
 export type GetAlbumsArtistsQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>
   limit?: InputMaybe<Scalars['Int']['input']>
@@ -470,92 +558,4 @@ export type GetNewReleasesQuery = {
       name?: string | null
     }> | null
   } | null> | null
-}
-
-export type GetArtistQueryVariables = Exact<{
-  artistId: Scalars['String']['input']
-}>
-
-export type GetArtistQuery = {
-  __typename?: 'Query'
-  artist?: {
-    __typename?: 'Artist'
-    id: string
-    name?: string | null
-    type?: string | null
-    genres?: Array<string | null> | null
-    followers?: {
-      __typename?: 'Followers'
-      href?: string | null
-      total?: number | null
-    } | null
-    images?: Array<{
-      __typename?: 'Image'
-      url?: string | null
-      height?: number | null
-      width?: number | null
-    } | null> | null
-  } | null
-}
-
-export type GetSearchResultsQueryVariables = Exact<{
-  query: Scalars['String']['input']
-}>
-
-export type GetSearchResultsQuery = {
-  __typename?: 'Query'
-  search?: {
-    __typename?: 'SearchResult'
-    albums?: Array<{
-      __typename?: 'AlbumResult'
-      id?: string | null
-      name?: string | null
-      album_type?: string | null
-      release_date?: string | null
-      images?: Array<{
-        __typename?: 'Image'
-        url?: string | null
-        height?: number | null
-        width?: number | null
-      } | null> | null
-      artists?: Array<{
-        __typename?: 'ArtistResult'
-        id?: string | null
-        name?: string | null
-      } | null> | null
-    } | null> | null
-    artists?: Array<{
-      __typename?: 'ArtistResult'
-      id?: string | null
-      name?: string | null
-      type?: string | null
-      images?: Array<{
-        __typename?: 'Image'
-        url?: string | null
-        height?: number | null
-        width?: number | null
-      } | null> | null
-    } | null> | null
-    tracks?: Array<{
-      __typename?: 'TrackResult'
-      id?: string | null
-      name?: string | null
-      duration_ms?: number | null
-      album?: {
-        __typename?: 'AlbumResult'
-        id?: string | null
-        images?: Array<{
-          __typename?: 'Image'
-          url?: string | null
-          height?: number | null
-          width?: number | null
-        } | null> | null
-      } | null
-      artists?: Array<{
-        __typename?: 'ArtistResult'
-        id?: string | null
-        name?: string | null
-      } | null> | null
-    } | null> | null
-  } | null
 }

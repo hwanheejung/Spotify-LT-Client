@@ -1,4 +1,5 @@
 export * from './flat-list'
+export * from './grid-list'
 export * from './menu'
 export * from './music-bars'
 export * from './resizable-panel'

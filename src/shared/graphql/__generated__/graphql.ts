@@ -282,6 +282,32 @@ export type TrackResult = {
   name?: Maybe<Scalars['String']['output']>
 }
 
+export type GetArtistQueryVariables = Exact<{
+  artistId: Scalars['String']['input']
+}>
+
+export type GetArtistQuery = {
+  __typename?: 'Query'
+  artist?: {
+    __typename?: 'Artist'
+    id: string
+    name?: string | null
+    type?: string | null
+    genres?: Array<string | null> | null
+    followers?: {
+      __typename?: 'Followers'
+      href?: string | null
+      total?: number | null
+    } | null
+    images?: Array<{
+      __typename?: 'Image'
+      url?: string | null
+      height?: number | null
+      width?: number | null
+    } | null> | null
+  } | null
+}
+
 export type GetAvailableDevicesQueryVariables = Exact<{ [key: string]: never }>
 
 export type GetAvailableDevicesQuery = {
@@ -385,6 +411,68 @@ export type GetQueueQuery = {
   } | null
 }
 
+export type GetSearchResultsQueryVariables = Exact<{
+  query: Scalars['String']['input']
+}>
+
+export type GetSearchResultsQuery = {
+  __typename?: 'Query'
+  search?: {
+    __typename?: 'SearchResult'
+    albums?: Array<{
+      __typename?: 'AlbumResult'
+      id?: string | null
+      name?: string | null
+      album_type?: string | null
+      release_date?: string | null
+      images?: Array<{
+        __typename?: 'Image'
+        url?: string | null
+        height?: number | null
+        width?: number | null
+      } | null> | null
+      artists?: Array<{
+        __typename?: 'ArtistResult'
+        id?: string | null
+        name?: string | null
+      } | null> | null
+    } | null> | null
+    artists?: Array<{
+      __typename?: 'ArtistResult'
+      id?: string | null
+      name?: string | null
+      type?: string | null
+      images?: Array<{
+        __typename?: 'Image'
+        url?: string | null
+        height?: number | null
+        width?: number | null
+      } | null> | null
+    } | null> | null
+    tracks?: Array<{
+      __typename?: 'TrackResult'
+      id?: string | null
+      name?: string | null
+      duration_ms?: number | null
+      album?: {
+        __typename?: 'AlbumResult'
+        id?: string | null
+        images?: Array<{
+          __typename?: 'Image'
+          url?: string | null
+          height?: number | null
+          width?: number | null
+        } | null> | null
+      } | null
+      artists?: Array<{
+        __typename?: 'ArtistResult'
+        id?: string | null
+        name?: string | null
+      } | null> | null
+    } | null> | null
+  } | null
+}
+
 export type GetAlbumsArtistsQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>
   limit?: InputMaybe<Scalars['Int']['input']>
@@ -474,94 +562,86 @@ export type GetNewReleasesQuery = {
   } | null> | null
 }
 
-export type GetArtistQueryVariables = Exact<{
-  artistId: Scalars['String']['input']
-}>
-
-export type GetArtistQuery = {
-  __typename?: 'Query'
-  artist?: {
-    __typename?: 'Artist'
-    id: string
-    name?: string | null
-    type?: string | null
-    genres?: Array<string | null> | null
-    followers?: {
-      __typename?: 'Followers'
-      href?: string | null
-      total?: number | null
-    } | null
-    images?: Array<{
-      __typename?: 'Image'
-      url?: string | null
-      height?: number | null
-      width?: number | null
-    } | null> | null
-  } | null
-}
-
-export type GetSearchResultsQueryVariables = Exact<{
-  query: Scalars['String']['input']
-}>
-
-export type GetSearchResultsQuery = {
-  __typename?: 'Query'
-  search?: {
-    __typename?: 'SearchResult'
-    albums?: Array<{
-      __typename?: 'AlbumResult'
-      id?: string | null
-      name?: string | null
-      album_type?: string | null
-      release_date?: string | null
-      images?: Array<{
-        __typename?: 'Image'
-        url?: string | null
-        height?: number | null
-        width?: number | null
-      } | null> | null
-      artists?: Array<{
-        __typename?: 'ArtistResult'
-        id?: string | null
-        name?: string | null
-      } | null> | null
-    } | null> | null
-    artists?: Array<{
-      __typename?: 'ArtistResult'
-      id?: string | null
-      name?: string | null
-      type?: string | null
-      images?: Array<{
-        __typename?: 'Image'
-        url?: string | null
-        height?: number | null
-        width?: number | null
-      } | null> | null
-    } | null> | null
-    tracks?: Array<{
-      __typename?: 'TrackResult'
-      id?: string | null
-      name?: string | null
-      duration_ms?: number | null
-      album?: {
-        __typename?: 'AlbumResult'
-        id?: string | null
-        images?: Array<{
-          __typename?: 'Image'
-          url?: string | null
-          height?: number | null
-          width?: number | null
-        } | null> | null
-      } | null
-      artists?: Array<{
-        __typename?: 'ArtistResult'
-        id?: string | null
-        name?: string | null
-      } | null> | null
-    } | null> | null
-  } | null
-}
-
+export const GetArtistDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetArtist' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'artistId' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'artist' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'artistId' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'artistId' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'type' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'followers' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'href' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'total' } },
+                    ],
+                  },
+                },
+                { kind: 'Field', name: { kind: 'Name', value: 'genres' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'images' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'height' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetArtistQuery, GetArtistQueryVariables>
 export const GetAvailableDevicesDocument = {
   kind: 'Document',
   definitions: [
@@ -923,6 +1003,215 @@ export const GetQueueDocument = {
     },
   ],
 } as unknown as DocumentNode<GetQueueQuery, GetQueueQueryVariables>
+export const GetSearchResultsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetSearchResults' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'query' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'search' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'query' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'query' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'albums' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'album_type' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'release_date' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'images' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'url' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'height' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'width' },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'artists' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'artists' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'type' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'images' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'url' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'height' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'width' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'tracks' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'album' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'images' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'url' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'height' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'width' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'duration_ms' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'artists' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetSearchResultsQuery,
+  GetSearchResultsQueryVariables
+>
 export const GetAlbumsArtistsDocument = {
   kind: 'Document',
   definitions: [
@@ -1272,292 +1561,3 @@ export const GetNewReleasesDocument = {
     },
   ],
 } as unknown as DocumentNode<GetNewReleasesQuery, GetNewReleasesQueryVariables>
-export const GetArtistDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetArtist' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'artistId' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'artist' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'artistId' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'artistId' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'type' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'followers' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'href' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'total' } },
-                    ],
-                  },
-                },
-                { kind: 'Field', name: { kind: 'Name', value: 'genres' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'images' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'height' },
-                      },
-                      { kind: 'Field', name: { kind: 'Name', value: 'width' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetArtistQuery, GetArtistQueryVariables>
-export const GetSearchResultsDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetSearchResults' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'query' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'search' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'query' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'query' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'albums' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'album_type' },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'release_date' },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'images' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'url' },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'height' },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'width' },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'artists' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'id' },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'name' },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'artists' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'type' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'images' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'url' },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'height' },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'width' },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'tracks' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'album' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'id' },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'images' },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'url' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'height' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'width' },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'duration_ms' },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'artists' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'id' },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'name' },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetSearchResultsQuery,
-  GetSearchResultsQueryVariables
->
