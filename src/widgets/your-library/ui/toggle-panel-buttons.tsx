@@ -2,7 +2,7 @@ import { GoArrowLeft, GoArrowRight } from 'react-icons/go'
 import { IoLibrarySharp } from 'react-icons/io5'
 import { Tooltip, useLayoutStore } from '@/shared/ui'
 
-export const CollapsePanel = () => {
+export const CollapsePanelButton = () => {
   const { leftPanelRef } = useLayoutStore()
   return (
     <button
@@ -17,7 +17,7 @@ export const CollapsePanel = () => {
   )
 }
 
-export const ExpandPanel = () => {
+export const ExpandPanelButton = () => {
   const { leftPanelRef } = useLayoutStore()
   return (
     <button
@@ -31,7 +31,7 @@ export const ExpandPanel = () => {
   )
 }
 
-export const TogglePanel = () => {
+export const TogglePanelButton = () => {
   const { leftPanelState, setLeftPanelState } = useLayoutStore()
   return (
     <button type="button" aria-label="Toggle left panel">

@@ -3,9 +3,9 @@ import { FiGrid } from 'react-icons/fi'
 import { IoListSharp } from 'react-icons/io5'
 import { PiListBold } from 'react-icons/pi'
 import { Menu, MenuButton, MenuItem, MenuList } from '@/shared/ui'
-import { type IViewAs, useMenu } from '../MenuContext'
+import { type TViewAs, useMenu } from '../model/menu-context'
 
-const viewOptions: Record<IViewAs, { label: string; icon: any }> = {
+const viewOptions: Record<TViewAs, { label: string; icon: any }> = {
   COMPACT: {
     label: 'Compact',
     icon: PiListBold,
@@ -23,7 +23,7 @@ const viewOptions: Record<IViewAs, { label: string; icon: any }> = {
 const ChangeView = () => {
   const { viewAs, setViewAs } = useMenu()
 
-  const handleClick = (value: IViewAs) => {
+  const handleClick = (value: TViewAs) => {
     setViewAs(value)
     document.cookie = `left-panel:view-as=${value}`
   }
@@ -48,7 +48,7 @@ const ChangeView = () => {
           return (
             <MenuItem
               key={key}
-              onClick={() => handleClick(key as IViewAs)}
+              onClick={() => handleClick(key as TViewAs)}
               className={viewAs === key ? 'text-spotifyGreen' : ''}
               iconLeft={<ItemIcon size="1rem" />}
               iconRight={viewAs === key && <FaCheck size="1rem" />}
@@ -62,4 +62,4 @@ const ChangeView = () => {
   )
 }
 
-export default ChangeView
+export { ChangeView }

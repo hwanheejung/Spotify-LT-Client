@@ -10,22 +10,22 @@ import {
   useState,
 } from 'react'
 
-export type IFilterType = 'ALBUM' | 'ARTIST'
-export type IViewAs = 'COMPACT' | 'LIST' | 'GRID'
+export type TFilterType = 'ALBUM' | 'ARTIST'
+export type TViewAs = 'COMPACT' | 'LIST' | 'GRID'
 
 interface ContextProps {
-  filter: IFilterType
-  viewAs: IViewAs
-  setFilter: Dispatch<SetStateAction<IFilterType>>
-  setViewAs: Dispatch<SetStateAction<IViewAs>>
+  filter: TFilterType
+  viewAs: TViewAs
+  setFilter: Dispatch<SetStateAction<TFilterType>>
+  setViewAs: Dispatch<SetStateAction<TViewAs>>
 }
 
 const MenuContext = createContext<ContextProps | undefined>(undefined)
 
 interface MenuProviderProps {
   children: ReactNode
-  defaultFilter: IFilterType
-  defaultViewAs: IViewAs
+  defaultFilter: TFilterType
+  defaultViewAs: TViewAs
 }
 
 export const MenuProvider = ({
@@ -33,8 +33,8 @@ export const MenuProvider = ({
   defaultFilter,
   defaultViewAs,
 }: MenuProviderProps) => {
-  const [filter, setFilter] = useState<IFilterType>(defaultFilter)
-  const [viewAs, setViewAs] = useState<IViewAs>(defaultViewAs)
+  const [filter, setFilter] = useState<TFilterType>(defaultFilter)
+  const [viewAs, setViewAs] = useState<TViewAs>(defaultViewAs)
 
   const value = useMemo(
     () => ({

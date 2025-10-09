@@ -31,4 +31,4 @@ const CreateButton = () => {
   )
 }
 
-export default CreateButton
+export { CreateButton }

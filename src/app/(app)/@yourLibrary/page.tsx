@@ -1,20 +1,20 @@
 import { cookies } from 'next/headers'
-import Contents from './_components/Contents'
-import Header from './_components/Header'
 import {
-  type IFilterType,
-  type IViewAs,
   MenuProvider,
-} from './_components/MenuContext'
+  type TFilterType,
+  type TViewAs,
+  YourLibraryContents,
+  YourLibraryHeader,
+} from '@/widgets/your-library'
 
-async function getDefault(): Promise<{ filter: IFilterType; viewAs: IViewAs }> {
+async function getDefault(): Promise<{ filter: TFilterType; viewAs: TViewAs }> {
   const cookieStore = await cookies()
   const filter = cookieStore.get('left-panel:filter')
   const viewAs = cookieStore.get('left-panel:view-as')
 
   return {
-    filter: (filter?.value as IFilterType) || 'ALBUM',
-    viewAs: (viewAs?.value as IViewAs) || 'LIST',
+    filter: (filter?.value as TFilterType) || 'ALBUM',
+    viewAs: (viewAs?.value as TViewAs) || 'LIST',
   }
 }
 
@@ -24,8 +24,8 @@ const YourLibraryPage = async () => {
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-lg bg-gray-700">
       <MenuProvider defaultFilter={filter} defaultViewAs={viewAs}>
-        <Header />
-        <Contents />
+        <YourLibraryHeader />
+        <YourLibraryContents />
       </MenuProvider>
     </div>
   )

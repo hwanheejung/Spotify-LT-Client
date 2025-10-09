@@ -1,36 +1,23 @@
 'use client'
 
 import { useSuspenseQuery } from '@apollo/client/react'
-import { Suspense } from 'react'
 import { match } from 'ts-pattern'
-import { GET_ALBUMS_ARTISTS } from '@/lib/queries/albums.query'
-import type { GetAlbumsArtistsQuery } from '@/shared/graphql'
-import { FlatList, useLayoutStore } from '@/shared/ui'
-import { useMenu } from '../MenuContext'
 import {
   ArtistCollapsedView,
   ArtistCompactView,
   ArtistGridView,
   ArtistListView,
-} from './ArtistItems'
+} from '@/entities/artist'
+import { GET_ALBUMS_ARTISTS } from '@/lib/queries/albums.query'
+import type { GetAlbumsArtistsQuery } from '@/shared/graphql'
+import { FlatList, useLayoutStore } from '@/shared/ui'
+import { useMenu } from '../model/menu-context'
 
 type SavedArtist = NonNullable<
   NonNullable<GetAlbumsArtistsQuery['savedArtists']>[number]
 >
 
-const ArtistsLoading = () => (
-  <div className="flex items-center justify-center p-10">
-    <div className="text-gray-200">Loading artists...</div>
-  </div>
-)
-
-const NoArtists = () => (
-  <div className="flex items-center justify-center p-10">
-    <div className="text-gray-200">No artists found</div>
-  </div>
-)
-
-const ArtistsContent = () => {
+const SavedArtists = () => {
   const { filter, viewAs } = useMenu()
   const leftPanelState = useLayoutStore((state) => state.leftPanelState)
 
@@ -65,12 +52,10 @@ const ArtistsContent = () => {
   )
 }
 
-const Artists = () => {
-  return (
-    <Suspense fallback={<ArtistsLoading />}>
-      <ArtistsContent />
-    </Suspense>
-  )
-}
+export { SavedArtists }
 
-export default Artists
+const NoArtists = () => (
+  <div className="flex items-center justify-center p-10">
+    <div className="text-gray-200">No artists found</div>
+  </div>
+)

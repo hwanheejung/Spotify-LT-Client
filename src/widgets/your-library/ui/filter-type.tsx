@@ -1,9 +1,20 @@
 'use client'
 
 import { twMerge } from 'tailwind-merge'
-import { type IFilterType, useMenu } from '../MenuContext'
+import { type TFilterType, useMenu } from '../model/menu-context'
 
-const FilterButton = ({ type }: { type: IFilterType }) => {
+const FilterType = () => {
+  return (
+    <div className="flex gap-2 px-3">
+      <FilterButton type="ALBUM" />
+      <FilterButton type="ARTIST" />
+    </div>
+  )
+}
+
+export { FilterType }
+
+const FilterButton = ({ type }: { type: TFilterType }) => {
   const { filter, setFilter } = useMenu()
   const handleClick = () => {
     setFilter(type)
@@ -25,14 +36,3 @@ const FilterButton = ({ type }: { type: IFilterType }) => {
     </button>
   )
 }
-
-const FilterType = () => {
-  return (
-    <div className="flex gap-2 px-3">
-      <FilterButton type="ALBUM" />
-      <FilterButton type="ARTIST" />
-    </div>
-  )
-}
-
-export default FilterType
