@@ -11,7 +11,9 @@
     "check": "biome check .",
     "prepare": "husky",
     "test": "jest --passWithNoTests",
-    "secure": "node server.js"
+    "secure": "node server.js",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "codegen:watch": "graphql-codegen --config codegen.ts --watch"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -44,6 +46,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.5",
+    "@graphql-codegen/cli": "^6.0.0",
+    "@graphql-codegen/typescript": "^5.0.2",
+    "@graphql-codegen/typescript-operations": "^5.0.2",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.2",
     "@testing-library/react": "^16.0.1",
