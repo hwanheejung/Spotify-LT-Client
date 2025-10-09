@@ -1,8 +1,8 @@
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { MdComputer, MdOutlineSpeaker } from 'react-icons/md'
-import { MusicBars } from '@/components/icons'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
-import type { Device } from '@/shared/__graphql-generated__'
+import type { Device } from '@/shared/graphql'
+import { MusicBars } from '@/shared/ui'
 
 const CurrentDevice = ({ name, type }: Device) => {
   const { playerName, isPaused } = usePlaybackStore()

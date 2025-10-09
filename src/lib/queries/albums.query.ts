@@ -1,4 +1,4 @@
-import { gql } from '@/shared/__graphql-generated__'
+import { gql } from '@/shared/graphql'
 
 export const GET_ALBUMS_ARTISTS = gql(`
   query GetAlbumsArtists($offset: Int = 0, $limit: Int = 20, $after: String) {

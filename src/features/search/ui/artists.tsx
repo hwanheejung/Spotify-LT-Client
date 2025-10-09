@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { match, P } from 'ts-pattern'
-import type { GetSearchResultsQuery } from '@/shared/__graphql-generated__/dto'
+import type { GetSearchResultsQuery } from '@/shared/graphql'
 import { Section } from './section'
 
 type SearchData = NonNullable<GetSearchResultsQuery['search']>

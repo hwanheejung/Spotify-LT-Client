@@ -4,7 +4,7 @@ import { useSuspenseQuery } from '@apollo/client/react'
 import { Suspense } from 'react'
 import { match, P } from 'ts-pattern'
 import { GET_ARTIST } from '@/entities/artist'
-import type { GetArtistQuery } from '@/shared/__graphql-generated__/dto'
+import type { GetArtistQuery } from '@/shared/graphql'
 
 const ProfileHeader = ({ artistId }: { artistId: string }) => {
   return (

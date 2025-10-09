@@ -1,4 +1,4 @@
-import { gql } from '@/shared/__graphql-generated__'
+import { gql } from '@/shared/graphql'
 
 export const GET_SEARCH_RESULTS = gql(`
   query GetSearchResults($query: String!) {

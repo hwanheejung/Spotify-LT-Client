@@ -2,9 +2,7 @@ import { motion } from 'framer-motion'
 import type { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type MusicBarsProps = HTMLAttributes<HTMLDivElement>
-
-const MusicBars = ({ className, ...rest }: MusicBarsProps) => {
+const MusicBars = ({ className, ...rest }: HTMLAttributes<HTMLDivElement>) => {
   const barScales = [
     [0.2, 0.5, 1, 0.2],
     [0.7, 1, 0.2, 0.7],
@@ -34,4 +32,4 @@ const MusicBars = ({ className, ...rest }: MusicBarsProps) => {
   )
 }
 
-export default MusicBars
+export { MusicBars }

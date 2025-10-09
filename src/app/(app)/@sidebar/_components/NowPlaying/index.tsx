@@ -2,7 +2,7 @@
 
 import { match, P } from 'ts-pattern'
 import { Quiz } from '@/entities/quiz'
-import type { GetQueueQuery } from '@/shared/__graphql-generated__/dto'
+import type { GetQueueQuery } from '@/shared/graphql'
 import Header from '../Header'
 import { CurrentTrack, CurrentTrackSkeleton } from './CurrentTrack'
 

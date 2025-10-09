@@ -1,4 +1,6 @@
 export * from './flat-list'
+export * from './menu'
+export * from './music-bars'
 export * from './resizable-panel'
 export * from './skeleton'
 export * from './tooltip'

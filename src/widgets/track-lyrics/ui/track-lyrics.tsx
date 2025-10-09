@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 import { FaSpotify } from 'react-icons/fa'
 import { match, P } from 'ts-pattern'
 import { GET_LYRICS } from '@/features/play-track'
-import { GetLyricsQuery } from '@/shared/__graphql-generated__'
+import { GetLyricsQuery } from '@/shared/graphql'
 import { PlainLyrics } from './plain-lyrics'
 import { SyncedLyrics } from './synced-lyrics'
 

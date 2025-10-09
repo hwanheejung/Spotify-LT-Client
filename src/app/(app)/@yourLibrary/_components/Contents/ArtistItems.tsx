@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { match, P } from 'ts-pattern'
-import type { GetAlbumsArtistsQuery } from '@/shared/__graphql-generated__'
+import type { GetAlbumsArtistsQuery } from '@/shared/graphql'
 import { useLayoutStore } from '@/shared/ui'
 
 type SavedArtist = NonNullable<

@@ -5,7 +5,7 @@ import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { MdComputer, MdOutlineSpeaker } from 'react-icons/md'
 import { match, P } from 'ts-pattern'
 import { TRANSFER_PLAYBACK } from '@/features/play-track'
-import type { GetAvailableDevicesQuery } from '@/shared/__graphql-generated__/dto'
+import type { GetAvailableDevicesQuery } from '@/shared/graphql'
 import OtherDevicesSkeleton from './OtherDevices.skeleton'
 
 type Device = NonNullable<

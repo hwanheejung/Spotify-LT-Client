@@ -3,10 +3,7 @@
 import { useSuspenseQuery } from '@apollo/client/react'
 import { match, P } from 'ts-pattern'
 import { AlbumTrack, AlbumTrackSkeleton } from '@/entities/track'
-import type {
-  GetAlbumQuery,
-  AlbumTrack as TAlbumTrack,
-} from '@/shared/__graphql-generated__'
+import type { GetAlbumQuery, AlbumTrack as TAlbumTrack } from '@/shared/graphql'
 import { FlatList } from '@/shared/ui'
 import { GET_ALBUM } from '../model/queries'
 

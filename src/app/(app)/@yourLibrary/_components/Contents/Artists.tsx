@@ -4,7 +4,7 @@ import { useSuspenseQuery } from '@apollo/client/react'
 import { Suspense } from 'react'
 import { match } from 'ts-pattern'
 import { GET_ALBUMS_ARTISTS } from '@/lib/queries/albums.query'
-import type { GetAlbumsArtistsQuery } from '@/shared/__graphql-generated__'
+import type { GetAlbumsArtistsQuery } from '@/shared/graphql'
 import { FlatList, useLayoutStore } from '@/shared/ui'
 import { useMenu } from '../MenuContext'
 import {

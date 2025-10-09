@@ -1,4 +1,4 @@
-import { gql } from '@/shared/__graphql-generated__'
+import { gql } from '@/shared/graphql'
 
 export const TRANSFER_PLAYBACK = gql(`
   mutation TransferPlayback($deviceId: String!) {

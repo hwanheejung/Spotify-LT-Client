@@ -2,11 +2,10 @@
 
 import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { match, P } from 'ts-pattern'
-import { MusicBars } from '@/components/icons'
 import useTrackControl from '@/lib/hooks/useTrackControl'
-import type { AlbumTrack } from '@/shared/__graphql-generated__'
+import type { AlbumTrack } from '@/shared/graphql'
 import { formatDuration } from '@/shared/lib/time'
-import { Skeleton, SkeletonText, Tooltip } from '@/shared/ui'
+import { MusicBars, Skeleton, SkeletonText, Tooltip } from '@/shared/ui'
 
 const AlbumTrack = ({ track, albumId }: TProps) => {
   const { isPaused, isCurrent, handleStart, pause } = useTrackControl({

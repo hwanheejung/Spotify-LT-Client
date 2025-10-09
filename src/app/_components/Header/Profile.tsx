@@ -7,8 +7,8 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-} from '@/components/menu'
-import { Tooltip } from '@/shared/ui'
+  Tooltip,
+} from '@/shared/ui'
 
 const Profile = ({ logout }: { logout: () => Promise<void> }) => {
   const router = useRouter()

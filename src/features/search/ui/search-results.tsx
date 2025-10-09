@@ -3,7 +3,7 @@
 import { useSuspenseQuery } from '@apollo/client/react'
 import { useMemo } from 'react'
 import { match, P } from 'ts-pattern'
-import type { GetSearchResultsQuery } from '@/shared/__graphql-generated__/dto'
+import type { GetSearchResultsQuery } from '@/shared/graphql'
 import { calculateTextSimilarity } from '../lib/calculate-text-similarity'
 import { GET_SEARCH_RESULTS } from '../model/queries'
 import { Albums } from './albums'

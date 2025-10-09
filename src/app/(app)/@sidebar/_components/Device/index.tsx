@@ -3,7 +3,7 @@
 import { useQuery } from '@apollo/client/react'
 import { match, P } from 'ts-pattern'
 import { GET_AVAILABLE_DEVICES } from '@/entities/devices'
-import type { GetAvailableDevicesQuery } from '@/shared/__graphql-generated__/dto'
+import type { GetAvailableDevicesQuery } from '@/shared/graphql'
 import Header from '../Header'
 import CurrentDevice from './CurrentDevice'
 import CurrentDeviceSkeleton from './CurrentDevice.skeleton'

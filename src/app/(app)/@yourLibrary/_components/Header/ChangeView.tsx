@@ -2,7 +2,7 @@ import { FaCheck } from 'react-icons/fa6'
 import { FiGrid } from 'react-icons/fi'
 import { IoListSharp } from 'react-icons/io5'
 import { PiListBold } from 'react-icons/pi'
-import { Menu, MenuButton, MenuItem, MenuList } from '@/components/menu'
+import { Menu, MenuButton, MenuItem, MenuList } from '@/shared/ui'
 import { type IViewAs, useMenu } from '../MenuContext'
 
 const viewOptions: Record<IViewAs, { label: string; icon: any }> = {
