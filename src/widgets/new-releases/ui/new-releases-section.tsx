@@ -1,5 +1,5 @@
-import { PreloadQuery } from '@/shared/graphql'
 import { Suspense } from 'react'
+import { PreloadQuery } from '@/shared/graphql/apollo-client'
 import { GET_NEW_RELEASES } from '../model/queries'
 import { NewReleases, NewReleasesSkeleton } from './new-releases'
 

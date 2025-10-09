@@ -8,7 +8,6 @@ import { HiOutlineQueueList } from 'react-icons/hi2'
 import { TbMicrophone2 } from 'react-icons/tb'
 import { twMerge } from 'tailwind-merge'
 import {
-  Tooltip,
   type TPlacement,
   type TTooltipOptions,
   useLayoutStore,
@@ -65,14 +64,12 @@ const RightPanelNavItem = ({
   icon,
   placement = 'top',
 }: TRightPanelNavItemProps) => (
-  <Tooltip label={label} spacing={20} placement={placement}>
-    <Button
-      selected={selected}
-      onClick={onClick}
-      icon={icon}
-      aria-label={label}
-    />
-  </Tooltip>
+  <Button
+    selected={selected}
+    onClick={onClick}
+    icon={icon}
+    aria-label={label}
+  />
 )
 
 type TRightPanelNavItemProps = Pick<TTooltipOptions, 'placement'> & {

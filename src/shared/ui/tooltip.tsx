@@ -21,7 +21,7 @@ const Tooltip = ({
   className,
 }: TTooltipProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const triggerRef = useRef<HTMLButtonElement | null>(null)
+  const triggerRef = useRef<HTMLDivElement | null>(null)
 
   const openTooltip = useCallback(() => setIsOpen(true), [])
   const closeTooltip = useCallback(() => setIsOpen(false), [])
@@ -30,22 +30,17 @@ const Tooltip = ({
 
   return (
     <div className="relative w-fit">
-      <button
+      <div
         ref={triggerRef}
         onMouseEnter={openTooltip}
         onMouseLeave={closeTooltip}
         onFocus={openTooltip}
         onBlur={closeTooltip}
-        onClick={(event) => {
-          event.stopPropagation()
-          closeTooltip()
-        }}
         className={cn(`inline-block ${className}`)}
-        type="button"
         aria-label={label}
       >
         {children}
-      </button>
+      </div>
 
       <TooltipPopper
         isOpen={isOpen}

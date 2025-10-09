@@ -175,7 +175,8 @@ const ResizablePanelMain = ({ children, defaultSize }: TPanelProps) => {
       minSize={MAIN_PANNEL_SIZE.MIN}
       maxSize={MAIN_PANNEL_SIZE.MAX}
       ref={ref}
-      className="rounded-lg bg-gray-700"
+      className="rounded-lg"
+      style={{ backgroundColor: 'var(--color-gray-700)' }}
     >
       {children}
     </Panel>
@@ -247,18 +248,21 @@ const ResizablePanelRight = ({ children, defaultSize }: TPanelProps) => {
 
 const ResizablePanelHandler = () => (
   <PanelResizeHandle
-    className="w-px hover:bg-gray-100"
+    className="w-px"
+    style={{
+      backgroundColor: 'transparent',
+    }}
     aria-label="Resizable panel"
   />
 )
 
-export const ResizablePanel = Object.assign(ResizablePanelGroup, {
-  Group: ResizablePanelGroup,
-  Left: ResizablePanelLeft,
-  Main: ResizablePanelMain,
-  Right: ResizablePanelRight,
-  Handler: ResizablePanelHandler,
-})
+export {
+  ResizablePanelGroup as ResizablePanel,
+  ResizablePanelLeft,
+  ResizablePanelMain,
+  ResizablePanelRight,
+  ResizablePanelHandler,
+}
 
 type TPanelProps = {
   children: ReactNode

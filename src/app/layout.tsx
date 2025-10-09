@@ -3,9 +3,8 @@ import type { ReactNode } from 'react'
 import '@/shared/styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Spotify-LT',
-  description:
-    'A Spotify lyrics translation and real-time synchronization tool',
+  title: 'Spotify-LQ',
+  description: 'A Spotify lyrics quizzes',
 }
 
 export default function RootLayout({ children }: Readonly<TProps>) {

@@ -5,6 +5,7 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { usePlaybackStore } from '@/features/play-track'
 import { getSpotifyToken } from '@/lib/api/auth'
+import { usePremiumStore } from '../model/premium-store'
 
 const useWebPlayback = () => {
   const {
@@ -15,6 +16,8 @@ const useWebPlayback = () => {
     setIsActive,
     setDeviceId,
   } = usePlaybackStore()
+
+  const { setPremiumRequired } = usePremiumStore()
 
   const playerRef = useRef<Spotify.Player | null>(null)
   const pollingInterval = useRef<NodeJS.Timeout | null>(null)
@@ -56,7 +59,7 @@ const useWebPlayback = () => {
     if (pollingInterval.current) clearInterval(pollingInterval.current)
   }, [])
 
-  const connectPlayer = () => {
+  const connectPlayer = useCallback(() => {
     const player = playerRef.current
     if (!player) return
     player.connect().then((success) => {
@@ -65,9 +68,9 @@ const useWebPlayback = () => {
         startStatePolling()
       } else console.error('Player connection failed')
     })
-  }
+  }, [startStatePolling])
 
-  const addPlayerListeners = () => {
+  const addPlayerListeners = useCallback(() => {
     const player = playerRef.current
     if (!player) return
     player.addListener('ready', ({ device_id }) => {
@@ -80,23 +83,26 @@ const useWebPlayback = () => {
       if (!state) setIsActive(false)
       else setIsActive(true)
     })
-  }
+  }, [setDeviceId, setIsActive])
 
-  const handlePlayerError = async () => {
+  const handlePlayerError = useCallback(async () => {
     const player = playerRef.current
     if (!player) return
     player.addListener('authentication_error', ({ message }) => {
-      console.error('Authentication error:', message)
+      console.log('Authentication error:', message)
     })
 
     player.addListener('account_error', ({ message }) => {
-      console.error('Account error:', message)
+      console.log('Account error:', message)
+      if (message.toLowerCase().includes('premium')) {
+        setPremiumRequired(true)
+      }
     })
 
     player.addListener('playback_error', ({ message }) => {
-      console.error('Playback error:', message)
+      console.log('Playback error:', message)
     })
-  }
+  }, [setPremiumRequired])
 
   const waitForSpotifySDK = useCallback(() => {
     return new Promise<void>((resolve) => {
@@ -142,7 +148,8 @@ const useWebPlayback = () => {
       stopStatePolling()
       playerRef.current?.disconnect()
     }
-  }, [initializePlayer, stopStatePolling])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 }
 
 export { useWebPlayback }

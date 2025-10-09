@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { LevelId, Status } from '@/types/quiz.types'
+import type { LevelId, Status } from '../lib/types'
 
 const useQuizStore = create<TStore>((set) => ({
   status: 'NOT_PLAYING',

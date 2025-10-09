@@ -10,11 +10,7 @@ import { GET_NEW_RELEASES } from '../model/queries'
 import { Section } from './section'
 
 const NewReleases = () => {
-  const { data } = useSuspenseQuery<GetNewReleasesQuery>(GET_NEW_RELEASES, {
-    variables: {
-      limit: 5,
-    },
-  })
+  const { data } = useSuspenseQuery<GetNewReleasesQuery>(GET_NEW_RELEASES)
 
   const validReleases = (data.newReleases ?? []).filter(
     (release): release is TNewRelease => release !== null,

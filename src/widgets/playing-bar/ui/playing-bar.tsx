@@ -5,7 +5,7 @@ import { CurrentTrack } from './current-track'
 import { RightPanelNav } from './rightpanel-nav'
 import { SeekBar } from './seek-bar'
 
-const PlayingBar = async () => {
+const PlayingBar = () => {
   useWebPlayback()
 
   return (

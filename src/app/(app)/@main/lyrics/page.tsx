@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { GET_LYRICS } from '@/features/play-track'
-import { PreloadQuery } from '@/shared/graphql'
+import { PreloadQuery } from '@/shared/graphql/apollo-client'
 import { TrackLyrics } from '@/widgets/track-lyrics'
 
 const LyricsPage = () => {

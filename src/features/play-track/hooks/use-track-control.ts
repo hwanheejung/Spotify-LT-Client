@@ -1,3 +1,5 @@
+'use client'
+
 import { useMutation } from '@apollo/client/react'
 import { useRef } from 'react'
 import { match, P } from 'ts-pattern'

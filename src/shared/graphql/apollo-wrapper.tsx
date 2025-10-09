@@ -1,13 +1,24 @@
 'use client'
 
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
-import { ApolloNextAppProvider } from '@apollo/client-integration-nextjs'
+import { HttpLink } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloNextAppProvider,
+  InMemoryCache,
+} from '@apollo/client-integration-nextjs'
 
 function makeClient() {
   const httpLink = new HttpLink({
+    // this needs to be an absolute url, as relative urls cannot be used in SSR
     uri: `${process.env.API_HOST}/graphql`,
     credentials: 'include',
-    fetchOptions: { cache: 'no-store' }, // 최신 권장사항: 캐싱 비활성화
+    fetchOptions: {
+      cache: 'no-store',
+    },
+    // you can override the default `fetchOptions` on a per query basis
+    // via the `context` property on the options passed as a second argument
+    // to an Apollo Client data fetching hook, e.g.:
+    // const { data } = useSuspenseQuery(MY_QUERY, { context: { fetchOptions: { ... }}});
   })
 
   return new ApolloClient({

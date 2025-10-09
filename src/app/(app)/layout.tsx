@@ -1,15 +1,19 @@
-import { ApolloWrapper } from '@/shared/graphql'
-import { PlayingBar } from '@/widgets/playing-bar'
-import '@/shared/styles/globals.css'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import type { ReactNode } from 'react'
+import { PremiumRequiredModal } from '@/features/play-track'
+import { ApolloWrapper } from '@/shared/graphql'
 import {
   LEFT_PANNEL_SIZE,
   MAIN_PANNEL_SIZE,
   ResizablePanel,
+  ResizablePanelHandler,
+  ResizablePanelLeft,
+  ResizablePanelMain,
+  ResizablePanelRight,
   RIGHT_PANNEL_SIZE,
-} from '@/shared/ui'
+} from '@/shared/ui/resizable-panel'
+import { PlayingBar } from '@/widgets/playing-bar'
 import { Header } from './_ui/header'
 
 export const metadata: Metadata = {
@@ -25,9 +29,18 @@ interface AppLayoutProps {
 }
 
 async function getDefaultLayout(): Promise<number[]> {
-  const cookieStore = await cookies()
-  const layout = cookieStore.get('react-resizable-panels:layout')
-  if (layout) return JSON.parse(layout.value)
+  try {
+    const cookieStore = await cookies()
+    const layout = cookieStore.get('react-resizable-panels:layout')
+    if (layout?.value) {
+      const parsed = JSON.parse(layout.value)
+      if (Array.isArray(parsed) && parsed.length === 3) {
+        return parsed
+      }
+    }
+  } catch (error) {
+    console.error('Failed to get layout from cookies:', error)
+  }
 
   return [
     LEFT_PANNEL_SIZE.DEFAULT,
@@ -45,23 +58,32 @@ export default async function AppLayout({
 
   return (
     <ApolloWrapper>
-      <Header />
-      <div className="flex-1 overflow-hidden px-3">
-        <ResizablePanel>
-          <ResizablePanel.Left defaultSize={defaultLayout[0]}>
-            {yourLibrary}
-          </ResizablePanel.Left>
-          <ResizablePanel.Handler />
-          <ResizablePanel.Main defaultSize={defaultLayout[1]}>
-            {main}
-          </ResizablePanel.Main>
-          <ResizablePanel.Handler />
-          <ResizablePanel.Right defaultSize={defaultLayout[2]}>
-            {sidebar}
-          </ResizablePanel.Right>
-        </ResizablePanel>
+      <div className="flex flex-col h-dvh overflow-hidden">
+        <Header />
+        <div className="flex-1 px-3 overflow-hidden">
+          <ResizablePanel>
+            <ResizablePanelLeft
+              defaultSize={defaultLayout[0] ?? LEFT_PANNEL_SIZE.DEFAULT}
+            >
+              {yourLibrary}
+            </ResizablePanelLeft>
+            <ResizablePanelHandler />
+            <ResizablePanelMain
+              defaultSize={defaultLayout[1] ?? MAIN_PANNEL_SIZE.DEFAULT}
+            >
+              {main}
+            </ResizablePanelMain>
+            <ResizablePanelHandler />
+            <ResizablePanelRight
+              defaultSize={defaultLayout[2] ?? RIGHT_PANNEL_SIZE.DEFAULT}
+            >
+              {sidebar}
+            </ResizablePanelRight>
+          </ResizablePanel>
+        </div>
+        <PlayingBar />
       </div>
-      <PlayingBar />
+      <PremiumRequiredModal />
     </ApolloWrapper>
   )
 }

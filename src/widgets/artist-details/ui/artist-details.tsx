@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { PreloadQuery } from '@/shared/graphql'
+import { PreloadQuery } from '@/shared/graphql/apollo-client'
 import { GET_ARTIST } from '../model/queries'
 import { ProfileHeader, ProfileHeaderSkeleton } from './profile-header'
 
