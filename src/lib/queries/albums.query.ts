@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client'
+import { gql } from '@/shared/__graphql-generated__'
 
-export const GET_ALBUMS_ARTISTS = gql`
+export const GET_ALBUMS_ARTISTS = gql(`
   query GetAlbumsArtists($offset: Int = 0, $limit: Int = 20, $after: String) {
     savedAlbums: savedAlbums(offset: $offset, limit: $limit) {
       added_at
@@ -24,9 +24,9 @@ export const GET_ALBUMS_ARTISTS = gql`
       }
     }
   }
-`
+`)
 
-export const GET_ALBUM = gql`
+export const GET_ALBUM = gql(`
   query GetAlbum($albumId: String!) {
     album(albumId: $albumId) {
       id
@@ -54,9 +54,9 @@ export const GET_ALBUM = gql`
       }
     }
   }
-`
+`)
 
-export const GET_NEW_RELEASES = gql`
+export const GET_NEW_RELEASES = gql(`
   query GetNewReleases($offset: Int = 0, $limit: Int = 4) {
     newReleases(offset: $offset, limit: $limit) {
       id
@@ -70,4 +70,4 @@ export const GET_NEW_RELEASES = gql`
       }
     }
   }
-`
+`)

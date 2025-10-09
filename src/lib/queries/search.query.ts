@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client'
+import { gql } from '@/shared/__graphql-generated__'
 
-export const GET_SEARCH_RESULTS = gql`
+export const GET_SEARCH_RESULTS = gql(`
   query GetSearchResults($query: String!) {
     search(query: $query) {
       albums {
@@ -47,4 +47,4 @@ export const GET_SEARCH_RESULTS = gql`
       }
     }
   }
-`
+`)

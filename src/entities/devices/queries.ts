@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client'
+import { gql } from '@/shared/__graphql-generated__'
 
-export const GET_AVAILABLE_DEVICES = gql`
+export const GET_AVAILABLE_DEVICES = gql(`
   query GetAvailableDevices {
     availableDevices {
       id
@@ -10,4 +10,4 @@ export const GET_AVAILABLE_DEVICES = gql`
       volume_percent
     }
   }
-`
+`)

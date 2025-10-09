@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client'
+import { gql } from '@/shared/__graphql-generated__'
 
-export const GET_ARTIST = gql`
+export const GET_ARTIST = gql(`
   query GetArtist($artistId: String!) {
     artist(artistId: $artistId) {
       id
@@ -18,4 +18,4 @@ export const GET_ARTIST = gql`
       }
     }
   }
-`
+`)
