@@ -9,18 +9,17 @@ import { GET_ALBUM } from '@/lib/queries/albums.query'
 import type { GetAlbumQuery } from '@/shared/__graphql-generated__'
 import { capitalizeFirstLetter } from '@/shared/lib/text'
 import { parseDate } from '@/shared/lib/time'
+import { Skeleton, SkeletonText } from '@/shared/ui'
 
-const AlbumOverviewLoading = () => (
-  <div className="flex items-center justify-center px-5 pb-7 pt-10">
-    <div className="text-gray-200">Loading album...</div>
-  </div>
-)
+const AlbumOverview = ({ albumId }: { albumId: string }) => {
+  return (
+    <Suspense fallback={<AlbumOverviewSkeleton />}>
+      <AlbumOverviewContent albumId={albumId} />
+    </Suspense>
+  )
+}
 
-const NoAlbumData = () => (
-  <div className="flex items-center justify-center px-5 pb-7 pt-10">
-    <div className="text-gray-200">Album not found</div>
-  </div>
-)
+export { AlbumOverview, AlbumOverviewSkeleton }
 
 const AlbumOverviewContent = ({ albumId }: { albumId: string }) => {
   const { data } = useSuspenseQuery<GetAlbumQuery>(GET_ALBUM, {
@@ -89,12 +88,22 @@ const AlbumOverviewContent = ({ albumId }: { albumId: string }) => {
     .otherwise(() => <NoAlbumData />)
 }
 
-const AlbumOverview = ({ albumId }: { albumId: string }) => {
-  return (
-    <Suspense fallback={<AlbumOverviewLoading />}>
-      <AlbumOverviewContent albumId={albumId} />
-    </Suspense>
-  )
-}
+const AlbumOverviewSkeleton = () => (
+  <div className="px-5 pb-7 pt-10">
+    <div className="flex items-end gap-5">
+      <Skeleton className="h-[150px] w-[150px] rounded-sm" />
 
-export default AlbumOverview
+      <div className="flex flex-1 flex-col gap-2">
+        <SkeletonText width="20%" className="mb-3" />
+        <SkeletonText lineHeight="36px" className="mb-3" />
+        <SkeletonText width="70%" />
+      </div>
+    </div>
+  </div>
+)
+
+const NoAlbumData = () => (
+  <div className="flex items-center justify-center px-5 pb-7 pt-10">
+    <div className="text-gray-200">Album not found</div>
+  </div>
+)

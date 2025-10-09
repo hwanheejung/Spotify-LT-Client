@@ -3,20 +3,18 @@
 import { useSuspenseQuery } from '@apollo/client/react'
 import { Suspense } from 'react'
 import { match, P } from 'ts-pattern'
-import { GET_ARTIST } from '@/lib/queries/artists.query'
+import { GET_ARTIST } from '@/entities/artist'
 import type { GetArtistQuery } from '@/shared/__graphql-generated__/dto'
 
-const ProfileHeaderLoading = () => (
-  <div className="flex h-80 items-center justify-center">
-    <div className="text-gray-200">Loading artist...</div>
-  </div>
-)
+const ProfileHeader = ({ artistId }: { artistId: string }) => {
+  return (
+    <Suspense fallback={<Loading />}>
+      <ProfileHeaderContent artistId={artistId} />
+    </Suspense>
+  )
+}
 
-const NoArtist = () => (
-  <div className="flex h-80 items-center justify-center">
-    <div className="text-gray-200">Artist not found</div>
-  </div>
-)
+export { ProfileHeader }
 
 const ProfileHeaderContent = ({ artistId }: { artistId: string }) => {
   const { data } = useSuspenseQuery<GetArtistQuery>(GET_ARTIST, {
@@ -47,12 +45,14 @@ const ProfileHeaderContent = ({ artistId }: { artistId: string }) => {
     .otherwise(() => <NoArtist />)
 }
 
-const ProfileHeader = ({ artistId }: { artistId: string }) => {
-  return (
-    <Suspense fallback={<ProfileHeaderLoading />}>
-      <ProfileHeaderContent artistId={artistId} />
-    </Suspense>
-  )
-}
+const Loading = () => (
+  <div className="flex h-80 items-center justify-center">
+    <div className="text-gray-200">Loading artist...</div>
+  </div>
+)
 
-export default ProfileHeader
+const NoArtist = () => (
+  <div className="flex h-80 items-center justify-center">
+    <div className="text-gray-200">Artist not found</div>
+  </div>
+)

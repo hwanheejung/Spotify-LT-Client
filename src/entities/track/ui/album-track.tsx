@@ -6,14 +6,9 @@ import { MusicBars } from '@/components/icons'
 import useTrackControl from '@/lib/hooks/useTrackControl'
 import type { AlbumTrack } from '@/shared/__graphql-generated__'
 import { formatDuration } from '@/shared/lib/time'
-import { Tooltip } from '@/shared/ui'
+import { Skeleton, SkeletonText, Tooltip } from '@/shared/ui'
 
-interface TrackItemProps {
-  track: AlbumTrack
-  albumId: string
-}
-
-const TrackItem = ({ track, albumId }: TrackItemProps) => {
+const AlbumTrack = ({ track, albumId }: TProps) => {
   const { isPaused, isCurrent, handleStart, pause } = useTrackControl({
     trackIds: track.id ? [track.id] : [],
   })
@@ -120,4 +115,29 @@ const TrackItem = ({ track, albumId }: TrackItemProps) => {
     .otherwise(() => null)
 }
 
-export default TrackItem
+export { AlbumTrack, AlbumTrackSkeleton }
+
+const AlbumTrackSkeleton = () => (
+  <div className="flex items-center gap-2 rounded-sm pr-5">
+    <div className="px-6 py-5">
+      <Skeleton className="w-4">
+        <p>1</p>
+      </Skeleton>
+    </div>
+
+    <div className="flex-1">
+      <Skeleton className="mb-2 h-4">
+        <h2>SongName</h2>
+      </Skeleton>
+      <Skeleton className="mb-2 h-4">
+        <p className="text-sm">ArtistNameArtistName</p>
+      </Skeleton>
+    </div>
+    <SkeletonText width="3rem" lineHeight="1rem" />
+  </div>
+)
+
+type TProps = {
+  track: AlbumTrack
+  albumId: string
+}

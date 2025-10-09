@@ -1,14 +1,14 @@
 import { lazy, Suspense } from 'react'
+import { GET_ARTIST } from '@/entities/artist'
 import { PreloadQuery } from '@/lib/graphql/apollo-client'
-import { GET_ARTIST } from '@/lib/queries/artists.query'
 
-const ProfileHeader = lazy(() => import('./_components/ProfileHeader'))
+const ProfileHeader = lazy(() =>
+  import('./_ui/ProfileHeader').then((module) => ({
+    default: module.ProfileHeader,
+  })),
+)
 
-interface ArtistPageProps {
-  params: Promise<{ artistId: string }>
-}
-
-const ArtistPage = async ({ params }: ArtistPageProps) => {
+const ArtistPage = async ({ params }: TProps) => {
   const { artistId } = await params
 
   return (
@@ -24,3 +24,7 @@ const ArtistPage = async ({ params }: ArtistPageProps) => {
 }
 
 export default ArtistPage
+
+type TProps = {
+  params: Promise<{ artistId: string }>
+}
