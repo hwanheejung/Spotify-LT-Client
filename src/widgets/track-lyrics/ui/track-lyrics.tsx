@@ -1,7 +1,6 @@
 'use client'
 
 import { useSuspenseQuery } from '@apollo/client/react'
-import { Suspense } from 'react'
 import { FaSpotify } from 'react-icons/fa'
 import { match, P } from 'ts-pattern'
 import { GET_LYRICS } from '@/features/play-track'
@@ -10,16 +9,6 @@ import { PlainLyrics } from './plain-lyrics'
 import { SyncedLyrics } from './synced-lyrics'
 
 const TrackLyrics = () => {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LyricsContent />
-    </Suspense>
-  )
-}
-
-export { TrackLyrics }
-
-const LyricsContent = () => {
   const { data } = useSuspenseQuery<GetLyricsQuery>(GET_LYRICS)
 
   const lyrics = data.player?.currentTrack?.lyrics
@@ -42,6 +31,8 @@ const LyricsContent = () => {
     )
     .otherwise(() => <NoData />)
 }
+
+export { TrackLyrics }
 
 const NoData = () => (
   <div className="flex h-full items-center justify-center">

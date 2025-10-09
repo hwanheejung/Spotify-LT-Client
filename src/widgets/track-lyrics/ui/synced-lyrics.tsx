@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
+import { usePlaybackStore } from '@/features/play-track'
 
 const SyncedLyrics = ({ lyrics }: TProps) => {
   const currentTime = usePlaybackStore((state) => state.currentTrack?.position)

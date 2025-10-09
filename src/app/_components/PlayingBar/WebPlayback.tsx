@@ -3,8 +3,8 @@
 'use client'
 
 import { type ReactNode, useCallback, useEffect, useRef } from 'react'
+import { usePlaybackStore } from '@/features/play-track'
 import { getSpotifyToken } from '@/lib/api/auth'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
 
 const WebPlayback = ({ children }: { children: ReactNode }) => {
   const {

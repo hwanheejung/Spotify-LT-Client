@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from 'react'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
+import { usePlaybackStore } from '@/features/play-track'
 import { formatDuration } from '@/shared/lib/time'
 
 const SeekBar = () => {

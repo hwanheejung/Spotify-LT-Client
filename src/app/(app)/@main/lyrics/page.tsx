@@ -1,11 +1,14 @@
+import { Suspense } from 'react'
 import { GET_LYRICS } from '@/features/play-track'
-import { PreloadQuery } from '@/shared/graphql/apollo-client'
+import { PreloadQuery } from '@/shared/graphql'
 import { TrackLyrics } from '@/widgets/track-lyrics'
 
 const LyricsPage = () => {
   return (
     <PreloadQuery query={GET_LYRICS}>
-      <TrackLyrics />
+      <Suspense fallback={<div>Loading...</div>}>
+        <TrackLyrics />
+      </Suspense>
     </PreloadQuery>
   )
 }

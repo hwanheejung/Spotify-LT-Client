@@ -5,13 +5,9 @@ import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { twMerge } from 'tailwind-merge'
 import { match, P } from 'ts-pattern'
 import { START_PLAYBACK } from '@/features/play-track'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
+import { usePlaybackStore } from '../model/playback-store'
 
-interface PlayButtonProps {
-  albumId: string
-}
-
-const PlayButton = ({ albumId }: PlayButtonProps) => {
+const PlayAlbumTracksButton = ({ albumId }: TProps) => {
   const { player, isPaused, deviceId } = usePlaybackStore()
   const [startResumePlayback] = useMutation(START_PLAYBACK)
 
@@ -85,4 +81,8 @@ const PlayButton = ({ albumId }: PlayButtonProps) => {
   )
 }
 
-export default PlayButton
+export { PlayAlbumTracksButton }
+
+type TProps = {
+  albumId: string
+}

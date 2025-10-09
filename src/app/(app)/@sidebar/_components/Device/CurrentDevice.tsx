@@ -1,6 +1,6 @@
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { MdComputer, MdOutlineSpeaker } from 'react-icons/md'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
+import { usePlaybackStore } from '@/features/play-track'
 import type { Device } from '@/shared/graphql'
 import { MusicBars } from '@/shared/ui'
 

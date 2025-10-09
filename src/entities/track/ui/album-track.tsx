@@ -2,7 +2,7 @@
 
 import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { match, P } from 'ts-pattern'
-import useTrackControl from '@/lib/hooks/useTrackControl'
+import { useTrackControl } from '@/features/play-track'
 import type { AlbumTrack } from '@/shared/graphql'
 import { formatDuration } from '@/shared/lib/time'
 import { MusicBars, Skeleton, SkeletonText, Tooltip } from '@/shared/ui'

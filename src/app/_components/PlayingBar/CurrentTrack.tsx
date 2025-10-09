@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
+import { usePlaybackStore } from '@/features/play-track'
 import { Skeleton, SkeletonText } from '@/shared/ui'
 
 const CurrentTrack = () => {

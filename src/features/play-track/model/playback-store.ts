@@ -1,18 +1,5 @@
 import { create } from 'zustand'
 
-type Track = {
-  id: string | null
-  name: string
-  is_playable: boolean
-  album: {
-    name: string
-    images: { url: string }[]
-  }
-  artists: { name: string }[]
-  duration: number
-  position: number
-}
-
 const usePlaybackStore = create<TStore>((set) => ({
   player: undefined,
   playerName: 'Spotify Player',
@@ -33,14 +20,27 @@ export { usePlaybackStore }
 type TStore = {
   player?: Spotify.Player
   playerName: string
-  currentTrack?: Track
+  currentTrack?: TTrack
   isPaused: boolean
   isActive: boolean
   deviceId: string | null
   setPlayer: (player: Spotify.Player) => void
   setPlayerName: (playerName: string) => void
-  setCurrentTrack: (currentTrack: Track) => void
+  setCurrentTrack: (currentTrack: TTrack) => void
   setIsPaused: (isPaused: boolean) => void
   setIsActive: (isActive: boolean) => void
   setDeviceId: (deviceId: string | null) => void
+}
+
+type TTrack = {
+  id: string | null
+  name: string
+  is_playable: boolean
+  album: {
+    name: string
+    images: { url: string }[]
+  }
+  artists: { name: string }[]
+  duration: number
+  position: number
 }

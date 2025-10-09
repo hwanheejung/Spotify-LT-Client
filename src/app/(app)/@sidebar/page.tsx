@@ -2,23 +2,39 @@
 
 import { useQuery } from '@apollo/client/react'
 import { useEffect, useMemo } from 'react'
-import { GET_QUEUE } from '@/features/play-track'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
+import { match } from 'ts-pattern'
+import { GET_QUEUE, usePlaybackStore } from '@/features/play-track'
+import type { GetQueueQuery } from '@/shared/graphql'
 import { useLayoutStore } from '@/shared/ui'
 import Device from './_components/Device'
 import { NowPlaying } from './_components/NowPlaying'
 import Queue from './_components/Queue'
 
+type CurrentTrack = NonNullable<
+  NonNullable<GetQueueQuery['player']>['currentTrack']
+>
+type QueueTrack = NonNullable<
+  NonNullable<GetQueueQuery['player']>['queue'][number]
+>
+
 const SidebarPage = () => {
   const { rightPanelState } = useLayoutStore()
   const { isActive, currentTrack } = usePlaybackStore()
 
-  const { data, loading, refetch } = useQuery(GET_QUEUE, {
+  const { data, loading, refetch } = useQuery<GetQueueQuery>(GET_QUEUE, {
     skip: !isActive,
   })
 
-  const currentlyPlaying = useMemo(() => data?.player?.currentTrack, [data])
-  const queue = useMemo(() => data?.player?.queue, [data])
+  const currentlyPlaying = useMemo<CurrentTrack | undefined>(() => {
+    const track = data?.player?.currentTrack
+    return track ?? undefined
+  }, [data])
+
+  const queue = useMemo<QueueTrack[] | undefined>(() => {
+    const queueData = data?.player?.queue
+    if (!queueData) return undefined
+    return queueData.filter((track): track is QueueTrack => track !== null)
+  }, [data])
 
   useEffect(() => {
     if (currentTrack && currentlyPlaying?.id !== currentTrack.id) refetch()
@@ -27,22 +43,19 @@ const SidebarPage = () => {
   if (!rightPanelState) return null
 
   const renderContent = () => {
-    switch (rightPanelState) {
-      case 'NOW_PLAYING':
-        return <NowPlaying track={currentlyPlaying} loading={loading} />
-      case 'QUEUE':
-        return (
-          <Queue
-            currentlyPlaying={currentlyPlaying}
-            queue={queue}
-            loading={loading}
-          />
-        )
-      case 'DEVICE':
-        return <Device />
-      default:
-        return null
-    }
+    return match(rightPanelState)
+      .with('NOW_PLAYING', () => (
+        <NowPlaying track={currentlyPlaying} loading={loading} />
+      ))
+      .with('QUEUE', () => (
+        <Queue
+          currentlyPlaying={currentlyPlaying}
+          queue={queue}
+          loading={loading}
+        />
+      ))
+      .with('DEVICE', () => <Device />)
+      .otherwise(() => null)
   }
 
   return (

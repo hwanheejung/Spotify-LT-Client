@@ -16,12 +16,6 @@ type Track = NonNullable<NonNullable<SearchData['tracks']>[number]>
 type Album = NonNullable<NonNullable<SearchData['albums']>[number]>
 type Artist = NonNullable<NonNullable<SearchData['artists']>[number]>
 
-const NoResults = () => (
-  <div className="flex items-center justify-center p-10">
-    <div className="text-gray-200">No search results found</div>
-  </div>
-)
-
 const SearchResults = ({ query }: { query: string }) => {
   const { data } = useSuspenseQuery<GetSearchResultsQuery>(GET_SEARCH_RESULTS, {
     variables: { query },
@@ -105,3 +99,9 @@ const SearchResults = ({ query }: { query: string }) => {
 }
 
 export { SearchResults }
+
+const NoResults = () => (
+  <div className="flex items-center justify-center p-10">
+    <div className="text-gray-200">No search results found</div>
+  </div>
+)

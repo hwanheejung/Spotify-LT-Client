@@ -1,22 +1,11 @@
 'use client'
 
 import { useSuspenseQuery } from '@apollo/client/react'
-import { Suspense } from 'react'
 import { match, P } from 'ts-pattern'
-import { GET_ARTIST } from '@/entities/artist'
 import type { GetArtistQuery } from '@/shared/graphql'
+import { GET_ARTIST } from '../model/queries'
 
 const ProfileHeader = ({ artistId }: { artistId: string }) => {
-  return (
-    <Suspense fallback={<Loading />}>
-      <ProfileHeaderContent artistId={artistId} />
-    </Suspense>
-  )
-}
-
-export { ProfileHeader }
-
-const ProfileHeaderContent = ({ artistId }: { artistId: string }) => {
   const { data } = useSuspenseQuery<GetArtistQuery>(GET_ARTIST, {
     variables: { artistId },
   })
@@ -45,7 +34,9 @@ const ProfileHeaderContent = ({ artistId }: { artistId: string }) => {
     .otherwise(() => <NoArtist />)
 }
 
-const Loading = () => (
+export { ProfileHeader, ProfileHeaderSkeleton }
+
+const ProfileHeaderSkeleton = () => (
   <div className="flex h-80 items-center justify-center">
     <div className="text-gray-200">Loading artist...</div>
   </div>

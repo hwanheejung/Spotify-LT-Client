@@ -25,7 +25,7 @@ const Profile = ({ logout }: { logout: () => Promise<void> }) => {
       <MenuList>
         <MenuItem>Account</MenuItem>
         <MenuItem>Profile</MenuItem>
-        <MenuItem onClick={() => router.push('/settings')}>Settings</MenuItem>
+        <MenuItem>Settings</MenuItem>
         <Divider />
         <MenuItem onClick={logout}>Logout</MenuItem>
       </MenuList>

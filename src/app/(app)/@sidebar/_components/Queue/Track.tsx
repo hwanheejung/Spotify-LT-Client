@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { match, P } from 'ts-pattern'
-import { usePlaybackStore } from '@/lib/stores/playback.store'
+import { usePlaybackStore } from '@/features/play-track'
 import type { GetQueueQuery } from '@/shared/graphql'
 
 type CurrentTrack = NonNullable<
