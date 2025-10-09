@@ -3,7 +3,7 @@
 import { match, P } from 'ts-pattern'
 import type { GetQueueQuery } from '@/shared/graphql'
 import { FlatList } from '@/shared/ui'
-import Header from '../Header'
+import { SidebarHeader } from '../sidebar-header'
 import Track from './Track'
 import TrackSkeleton from './Track.skeleton'
 
@@ -22,7 +22,7 @@ interface QueueProps {
 
 const QueueLoading = () => (
   <div>
-    <Header title="Queue" />
+    <SidebarHeader title="Queue" />
     <div className="flex-1 px-3 pt-3">
       <TrackSkeleton />
       <TrackSkeleton />
@@ -33,7 +33,7 @@ const QueueLoading = () => (
 
 const NoQueue = () => (
   <div>
-    <Header title="Queue" />
+    <SidebarHeader title="Queue" />
     <div className="flex items-center justify-center p-10 text-gray-200">
       No tracks in queue
     </div>
@@ -60,7 +60,7 @@ const Queue = ({ currentlyPlaying, queue, loading }: QueueProps) => {
 
         return (
           <div className="flex h-full flex-col">
-            <Header title="Queue" />
+            <SidebarHeader title="Queue" />
             <div className="flex-1 overflow-y-scroll px-3 pb-10 pt-3 scrollbar-hide">
               <h2 className="font-bold">Now playing</h2>
               <Track track={currentlyPlaying} />

@@ -3,7 +3,7 @@
 import { LiaTimesSolid } from 'react-icons/lia'
 import { Tooltip, useLayoutStore } from '@/shared/ui'
 
-const Header = ({ title }: TProps) => {
+const SidebarHeader = ({ title }: TProps) => {
   const { setRightPanelState } = useLayoutStore()
 
   return (
@@ -21,7 +21,7 @@ const Header = ({ title }: TProps) => {
   )
 }
 
-export default Header
+export { SidebarHeader }
 
 type TProps = {
   title: string

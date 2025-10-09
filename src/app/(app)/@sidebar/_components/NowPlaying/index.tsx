@@ -3,7 +3,7 @@
 import { match, P } from 'ts-pattern'
 import { Quiz } from '@/entities/quiz'
 import type { GetQueueQuery } from '@/shared/graphql'
-import Header from '../Header'
+import { SidebarHeader } from '../sidebar-header'
 import { CurrentTrack, CurrentTrackSkeleton } from './CurrentTrack'
 
 type CurrentPlayingTrack = NonNullable<
@@ -22,7 +22,7 @@ const NowPlaying = ({ loading, track }: TProps) => {
 
   return (
     <div className="flex h-full flex-col">
-      <Header title={headerTitle} />
+      <SidebarHeader title={headerTitle} />
       <div className="flex flex-1 flex-col gap-5 overflow-y-scroll px-3 pb-3 scrollbar-hide">
         {match({ loading, track })
           .with({ loading: true }, () => <CurrentTrackSkeleton />)

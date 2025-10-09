@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client/react'
 import { match, P } from 'ts-pattern'
 import { GET_AVAILABLE_DEVICES } from '@/entities/devices'
 import type { GetAvailableDevicesQuery } from '@/shared/graphql'
-import Header from '../Header'
+import { SidebarHeader } from '../sidebar-header'
 import CurrentDevice from './CurrentDevice'
 import CurrentDeviceSkeleton from './CurrentDevice.skeleton'
 import OtherDevices from './OtherDevices'
@@ -51,7 +51,7 @@ const Device = () => {
 
         return (
           <div>
-            <Header title="Connect to a device" />
+            <SidebarHeader title="Connect to a device" />
             {currentDevice && <CurrentDevice {...currentDevice} />}
             <OtherDevices data={otherDevices} refetch={refetch} />
           </div>
@@ -60,7 +60,7 @@ const Device = () => {
     )
     .otherwise(() => (
       <div>
-        <Header title="Connect to a device" />
+        <SidebarHeader title="Connect to a device" />
         <div className="p-5 text-gray-200">No devices available</div>
       </div>
     ))
