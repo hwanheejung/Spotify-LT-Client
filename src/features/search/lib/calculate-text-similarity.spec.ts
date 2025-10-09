@@ -1,4 +1,4 @@
-import { calculateTextSimilarity } from '@/lib/utils/calculate-text-similarity'
+import { calculateTextSimilarity } from './calculate-text-similarity'
 
 describe('lib/utils/calculateTextSimilarity()', () => {
   it.each([

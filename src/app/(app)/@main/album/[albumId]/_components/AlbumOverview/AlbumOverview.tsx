@@ -6,8 +6,8 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 import { match, P } from 'ts-pattern'
 import { GET_ALBUM } from '@/lib/queries/albums.query'
-import { capitalizeFirstLetter } from '@/lib/utils/capitalize-first-letter'
 import type { GetAlbumQuery } from '@/shared/__graphql-generated__'
+import { capitalizeFirstLetter } from '@/shared/lib/text'
 import { parseDate } from '@/shared/lib/time'
 
 const AlbumOverviewLoading = () => (

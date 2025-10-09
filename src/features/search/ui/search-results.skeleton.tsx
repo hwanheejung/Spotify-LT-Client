@@ -1,7 +1,7 @@
 import { Section } from '@/components/section'
 import { Skeleton, SkeletonCircle, SkeletonText } from '@/shared/ui'
 
-const ResultSkeleton = () => (
+const SearchResultsSkeleton = () => (
   <div>
     <div className="grid grid-cols-2 gap-3">
       <Section title="Top result" hasLink={false}>
@@ -68,4 +68,4 @@ const ResultSkeleton = () => (
   </div>
 )
 
-export default ResultSkeleton
+export { SearchResultsSkeleton }

@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { match, P } from 'ts-pattern'
-import { capitalizeFirstLetter } from '@/lib/utils/capitalize-first-letter'
 import type { GetAlbumsArtistsQuery } from '@/shared/__graphql-generated__'
+import { capitalizeFirstLetter } from '@/shared/lib/text'
 import { getTimeAgo } from '@/shared/lib/time'
 import { useLayoutStore } from '@/shared/ui'
 
