@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import {
   Divider,
   Menu,
@@ -11,8 +10,6 @@ import {
 } from '@/shared/ui'
 
 const Profile = ({ logout }: { logout: () => Promise<void> }) => {
-  const router = useRouter()
-
   return (
     <Menu placement="bottom-end">
       <Tooltip label="Name" placement="bottom">
@@ -33,4 +30,4 @@ const Profile = ({ logout }: { logout: () => Promise<void> }) => {
   )
 }
 
-export default Profile
+export { Profile }

@@ -147,4 +147,4 @@ const WebPlayback = ({ children }: { children: ReactNode }) => {
   return <div className="grid w-full grid-cols-3 px-5 py-2">{children}</div>
 }
 
-export default WebPlayback
+export { WebPlayback }

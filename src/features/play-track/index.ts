@@ -1,4 +1,6 @@
 export * from './hooks/use-track-control'
+export * from './hooks/use-web-playback'
 export * from './model/playback-store'
 export * from './model/queries'
 export * from './ui/play-album-tracks-button'
+export * from './ui/player'

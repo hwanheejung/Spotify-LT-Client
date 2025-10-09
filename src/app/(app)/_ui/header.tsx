@@ -3,7 +3,7 @@ import { FaSpotify } from 'react-icons/fa'
 import { GrHomeRounded } from 'react-icons/gr'
 import { SearchBar } from '@/features/search'
 import { logout } from '@/lib/api/auth'
-import Profile from './Profile'
+import { Profile } from './profile'
 
 const Header = async () => {
   const signout = async () => {
@@ -24,7 +24,7 @@ const Header = async () => {
   )
 }
 
-export default Header
+export { Header }
 
 const Home = () => (
   <Link

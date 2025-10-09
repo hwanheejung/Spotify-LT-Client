@@ -8,8 +8,8 @@ import {
   useMemo,
   useState,
 } from 'react'
-import { usePlaybackStore } from '@/features/play-track'
 import { formatDuration } from '@/shared/lib/time'
+import { usePlaybackStore } from '../../../features/play-track/model/playback-store'
 
 const SeekBar = () => {
   const { player, currentTrack } = usePlaybackStore()
@@ -82,4 +82,4 @@ const SeekBar = () => {
   )
 }
 
-export default SeekBar
+export { SeekBar }

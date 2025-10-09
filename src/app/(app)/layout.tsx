@@ -1,6 +1,5 @@
-import { ApolloWrapper } from '@/app/_components/ApolloWrapper'
-import Header from '@/app/_components/Header'
-import PlayingBar from '@/app/_components/PlayingBar'
+import { ApolloWrapper } from '@/shared/graphql'
+import { PlayingBar } from '@/widgets/playing-bar'
 import '@/shared/styles/globals.css'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
@@ -11,6 +10,7 @@ import {
   ResizablePanel,
   RIGHT_PANNEL_SIZE,
 } from '@/shared/ui'
+import { Header } from './_ui/header'
 
 export const metadata: Metadata = {
   title: 'Spotify',

@@ -1,8 +1,9 @@
 'use client'
 
 import { FaBackwardStep } from 'react-icons/fa6'
-import { usePlaybackStore } from '@/features/play-track'
+
 import { Tooltip } from '@/shared/ui'
+import { usePlaybackStore } from '../model/playback-store'
 
 const PreviousButton = () => {
   const { player, currentTrack } = usePlaybackStore()
@@ -34,4 +35,4 @@ const PreviousButton = () => {
   )
 }
 
-export default PreviousButton
+export { PreviousButton }

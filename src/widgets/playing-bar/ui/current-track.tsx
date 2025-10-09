@@ -33,4 +33,4 @@ const CurrentTrack = () => {
   )
 }
 
-export default CurrentTrack
+export { CurrentTrack }
