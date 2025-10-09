@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Section } from '@/components/section'
-import { formatDuration } from '@/lib/utils/format-duration'
+import { formatDuration } from '@/shared/lib/time'
 
 export type Track = {
   id: string

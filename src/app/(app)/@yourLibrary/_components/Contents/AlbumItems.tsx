@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { capitalizeFirstLetter } from '@/lib/utils/capitalize-first-letter'
-import { getTimeAgo } from '@/lib/utils/get-time-ago'
 import type { AlbumItemDTO } from '@/shared/api'
+import { getTimeAgo } from '@/shared/lib/time'
 import { useLayoutStore } from '@/shared/ui'
 
 export const AlbumCollapsedView = ({

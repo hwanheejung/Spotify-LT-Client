@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useQuizStore } from '@/entities/quiz'
-import { type Level, type LevelId, levels } from '@/types/quiz.types'
+import { type Level, type LevelId, levels } from '../lib/types'
 
 const Quiz = ({ trackId }: { trackId: string }) => {
   const [levelId, setLevelId] = useState<LevelId>(0)

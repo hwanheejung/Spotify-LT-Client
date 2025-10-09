@@ -1,3 +1,22 @@
+export const parseDate = (
+  dateString: string,
+): {
+  year: number
+  month: number
+  date: number
+} => {
+  const [year, month, date] = dateString.split('-').map(Number)
+
+  return { year, month, date }
+}
+
+export const formatDuration = (durationMs: number): string => {
+  const minutes = Math.floor(durationMs / 60000)
+  const seconds = Math.floor((durationMs % 60000) / 1000)
+
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`
+}
+
 export const getTimeAgo = (dateString: string): string => {
   const inputDate = new Date(dateString)
   const currentDate = new Date()

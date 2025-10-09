@@ -5,8 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { GET_ALBUM } from '@/lib/queries/albums.query'
 import { capitalizeFirstLetter } from '@/lib/utils/capitalize-first-letter'
-import { parseDate } from '@/lib/utils/parse-date'
 import type { AlbumDTO } from '@/shared/api'
+import { parseDate } from '@/shared/lib/time'
 
 const AlbumOverview = ({ albumId }: { albumId: string }) => {
   const { data } = useSuspenseQuery<{ album: AlbumDTO }>(GET_ALBUM, {

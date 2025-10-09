@@ -3,8 +3,8 @@
 import { HiMiniPause, HiMiniPlay } from 'react-icons/hi2'
 import { MusicBars } from '@/components/icons'
 import useTrackControl from '@/lib/hooks/useTrackControl'
-import { formatDuration } from '@/lib/utils/format-duration'
 import type { AlbumTrackDTO } from '@/shared/api'
+import { formatDuration } from '@/shared/lib/time'
 import { Tooltip } from '@/shared/ui'
 
 interface TrackItemProps {

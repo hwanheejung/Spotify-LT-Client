@@ -1,4 +1,4 @@
-const Lyrics = ({ lyrics }: { lyrics: string }) => {
+const PlainLyrics = ({ lyrics }: TProps) => {
   return (
     <div className="h-full overflow-y-scroll px-10 py-20 scrollbar-hide">
       <p className="whitespace-pre-line text-xl font-bold text-gray-100 filter">
@@ -11,4 +11,8 @@ const Lyrics = ({ lyrics }: { lyrics: string }) => {
   )
 }
 
-export default Lyrics
+export { PlainLyrics }
+
+type TProps = {
+  lyrics: string
+}

@@ -9,7 +9,7 @@ import {
   useState,
 } from 'react'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
-import { formatDuration } from '@/lib/utils/format-duration'
+import { formatDuration } from '@/shared/lib/time'
 
 const SeekBar = () => {
   const { player, currentTrack } = usePlaybackStore()

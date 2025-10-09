@@ -1,4 +1,52 @@
+'use client'
+
+import { useSuspenseQuery } from '@apollo/client/react'
+import { Suspense } from 'react'
 import { FaSpotify } from 'react-icons/fa'
+import { match, P } from 'ts-pattern'
+import { GET_LYRICS } from '@/features/play-track'
+import { LyricsDTO } from '@/shared/api'
+import { PlainLyrics } from './plain-lyrics'
+import { SyncedLyrics } from './synced-lyrics'
+
+const TrackLyrics = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LyricsContent />
+    </Suspense>
+  )
+}
+
+export { TrackLyrics }
+
+const LyricsContent = () => {
+  const { data } = useSuspenseQuery<{
+    player: { currentTrack: { lyrics: LyricsDTO } }
+  }>(GET_LYRICS)
+
+  const lyrics = data?.player?.currentTrack?.lyrics
+
+  return match(lyrics)
+    .with({ available: false }, () => <NoData />)
+    .with({ locked: true }, () => <Locked />)
+    .with(
+      {
+        data: { syncedLyrics: P.when((lyrics) => lyrics && lyrics.length > 0) },
+      },
+      (lyrics) => <SyncedLyrics lyrics={lyrics.data.syncedLyrics} />,
+    )
+    .otherwise((lyrics) => <PlainLyrics lyrics={lyrics.data.plainLyrics} />)
+}
+
+const NoData = () => (
+  <div className="flex h-full items-center justify-center">
+    <div className="flex flex-col rounded-md bg-gray-400 px-5 py-4 pr-20">
+      <FaSpotify size="1.3rem" className="mb-3" />
+      <h2 className="text-2xl font-extrabold text-softPink">No Data</h2>
+      <p className="text-nowrap">Sorry, No lyrics provided</p>
+    </div>
+  </div>
+)
 
 const dummyLyrics =
   'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. \nAenean commodo ligula eget dolor. \nAenean massa. \nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. \nDonec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. \nNulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. \nIn enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. \nNullam dictum felis eu pede mollis pretium. \nInteger tincidunt. Cras dapibus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. \nAenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. \nAenean commodo ligula eget dolor. \nAenean massa. \nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. \nDonec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. \nNulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. \nIn enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. \nNullam dictum felis eu pede mollis pretium. \nInteger tincidunt. Cras dapibus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. \nAenean commodo ligula eget dolor.'
@@ -17,5 +65,3 @@ const Locked = () => {
     </div>
   )
 }
-
-export default Locked

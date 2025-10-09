@@ -1,16 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { usePlaybackStore } from '@/lib/stores/playback.store'
 
-interface SyncedLine {
-  time: number // ms
-  text: string
-}
-
-const SyncedLyrics = ({ lyrics }: { lyrics: string }) => {
+const SyncedLyrics = ({ lyrics }: TProps) => {
   const currentTime = usePlaybackStore((state) => state.currentTrack?.position)
   const lineRefs = useRef<(HTMLParagraphElement | null)[]>([])
 
-  const parsedLyrics: SyncedLine[] = lyrics
+  const parsedLyrics: TSyncedLine[] = lyrics
     .split('\n')
     .map((line: string) => {
       const [time, text] = line.split(']')
@@ -31,7 +26,7 @@ const SyncedLyrics = ({ lyrics }: { lyrics: string }) => {
         text: text.trim(),
       }
     })
-    .filter(Boolean) as SyncedLine[]
+    .filter(Boolean) as TSyncedLine[]
 
   useEffect(() => {
     if (!currentTime) return
@@ -81,4 +76,13 @@ const SyncedLyrics = ({ lyrics }: { lyrics: string }) => {
   )
 }
 
-export default SyncedLyrics
+export { SyncedLyrics }
+
+type TProps = {
+  lyrics: string
+}
+
+type TSyncedLine = {
+  time: number // ms
+  text: string
+}
