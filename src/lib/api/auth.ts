@@ -1,45 +1,20 @@
 'use server'
 
-import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
-import { extractSessionId } from '../utils/auth/extract-sessionid'
-import { deleteApi, get, post } from './base'
-
-export const getSpotifyUrl = async () => {
-  const { data } = await get(`/api/auth/spotify-auth-url`)
-  return data.url
-}
-
-export const login = async (code: string) => {
-  const { data, headers } = await post(`/api/auth/spotify-callback`, {
-    body: JSON.stringify({ code }),
-  })
-
-  const sessionId = extractSessionId(headers.get('set-cookie')!)
-  const cookieStore = await cookies()
-  cookieStore.set({
-    name: 'sessionId',
-    value: sessionId || '',
-    httpOnly: true,
-    path: '/',
-  })
-
-  return data
-}
+import { redirect } from 'next/navigation'
+import { deleteApi, get } from './base'
 
 export const logout = async () => {
-  await deleteApi('/api/auth/logout')
-  revalidateTag('session-status')
-}
+  try {
+    await deleteApi('/api/auth/logout')
+  } catch (error) {
+    console.error('Logout error:', error)
+  } finally {
+    const cookieStore = await cookies()
+    cookieStore.delete('sessionId')
 
-export const verifySession = async (): Promise<boolean> => {
-  const { data } = await get('/api/auth/status', {
-    next: {
-      revalidate: 60 * 60, // 1 hour
-      tags: ['session-status'],
-    },
-  })
-  return data.authenticated
+    redirect('/login')
+  }
 }
 
 export const getSpotifyToken = async (): Promise<string> => {

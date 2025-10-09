@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* Spotify Color Palette */
+@theme {
+  /* Spotify Brand Colors */
+  --color-spotifyGreen: #1db954;
+  --color-spotifyGreenHover: #1ed760;
+  --color-spotifyGreenDark: #1aa34a;
+  --color-spotifyBlack: #191414;
+  --color-spotifyDarkGray: #121212;
+  --color-spotifyGray: #282828;
+  --color-spotifyLightGray: #535353;
+  --color-spotifyWhite: #ffffff;
+
+  /* Gray scale for Tailwind classes (bg-gray-*, text-gray-*, etc) */
+  --color-gray-0: #ffffff;
+  --color-gray-50: #fafafa;
+  --color-gray-100: #b3b3b3;
+  --color-gray-200: #6a6a6a;
+  --color-gray-300: #535353;
+  --color-gray-400: #3e3e3e;
+  --color-gray-500: #282828;
+  --color-gray-600: #1f1f1f;
+  --color-gray-700: #191414;
+  --color-gray-800: #121212;
+  --color-gray-900: #0a0a0a;
+
+  /* Ensure Tailwind generates these classes */
+  --color-gray: {
+    0: var(--color-gray-0);
+    50: var(--color-gray-50);
+    100: var(--color-gray-100);
+    200: var(--color-gray-200);
+    300: var(--color-gray-300);
+    400: var(--color-gray-400);
+    500: var(--color-gray-500);
+    600: var(--color-gray-600);
+    700: var(--color-gray-700);
+    800: var(--color-gray-800);
+    900: var(--color-gray-900);
+  }
+}
+
+/* Custom CSS Variables for Dynamic Viewport */
+:root {
+  --dynamic-vh: 100vh;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --dynamic-vh: 100dvh;
+  }
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    border-color: var(--color-gray-300);
+  }
+
+  body {
+    background-color: var(--color-gray-800);
+    color: var(--color-gray-0);
+    font-family: "Circular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-feature-settings: "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Spotify-specific scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Custom Components */
+@layer components {
+  .spotify-button {
+    @apply bg-spotifyGreen hover:bg-spotifyGreenHover text-white font-bold py-2 px-4 rounded-full transition-colors duration-200;
+  }
+
+  .spotify-button-secondary {
+    @apply bg-transparent border border-white text-white hover:bg-white hover:text-black font-bold py-2 px-4 rounded-full transition-colors duration-200;
+  }
+
+  .spotify-card {
+    @apply bg-gray-500 text-gray-0 rounded-lg p-4 hover:bg-gray-400 transition-colors duration-200;
+  }
+
+  .spotify-input {
+    @apply bg-gray-400 border border-gray-300 text-gray-0 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-spotifyGreen focus:border-transparent;
+  }
+}
+
+/* Range Slider Styles */
+.range-slider {
+  background: linear-gradient(
+    to right,
+    var(--color-spotifyGreen) var(--progress, 0%),
+    var(--color-gray-300) var(--progress, 0%)
+  );
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0;
+  width: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.range-slider::-webkit-slider-runnable-track {
+  background-color: transparent;
+}
+
+&::-moz-range-thumb {
+  border: none;
+}
+
+.range-slider:disabled {
+  cursor: not-allowed;
+}
+
+/* Utility Classes */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
