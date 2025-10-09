@@ -2,13 +2,14 @@
 
 import { useQuery } from '@apollo/client/react'
 import { useEffect, useMemo } from 'react'
+import { LiaTimesSolid } from 'react-icons/lia'
 import { match } from 'ts-pattern'
 import { GET_QUEUE, usePlaybackStore } from '@/features/play-track'
 import type { GetQueueQuery } from '@/shared/graphql'
-import { useLayoutStore } from '@/shared/ui'
-import Device from './_components/Device'
-import { NowPlaying } from './_components/NowPlaying'
-import Queue from './_components/Queue'
+import { Tooltip, useLayoutStore } from '@/shared/ui'
+import { DevicePanel } from '@/widgets/rightpanel-device'
+import { NowPlayingPanel } from '@/widgets/rightpanel-nowplaying'
+import { QueuePanel } from '@/widgets/rightpanel-queue'
 
 type CurrentTrack = NonNullable<
   NonNullable<GetQueueQuery['player']>['currentTrack']
@@ -45,16 +46,29 @@ const DefaultSidebar = () => {
   const renderContent = () => {
     return match(rightPanelState)
       .with('NOW_PLAYING', () => (
-        <NowPlaying track={currentlyPlaying} loading={loading} />
+        <div className="flex h-full flex-col">
+          <SidebarHeader
+            title={currentlyPlaying?.album?.name ?? 'Select the track'}
+          />
+          <NowPlayingPanel track={currentlyPlaying} loading={loading} />
+        </div>
       ))
       .with('QUEUE', () => (
-        <Queue
-          currentlyPlaying={currentlyPlaying}
-          queue={queue}
-          loading={loading}
-        />
+        <div className="flex h-full flex-col">
+          <SidebarHeader title="Queue" />
+          <QueuePanel
+            currentlyPlaying={currentlyPlaying}
+            queue={queue}
+            loading={loading}
+          />
+        </div>
       ))
-      .with('DEVICE', () => <Device />)
+      .with('DEVICE', () => (
+        <>
+          <SidebarHeader title="Connect to a device" />
+          <DevicePanel />
+        </>
+      ))
       .otherwise(() => null)
   }
 
@@ -66,3 +80,21 @@ const DefaultSidebar = () => {
 }
 
 export default DefaultSidebar
+
+const SidebarHeader = ({ title }: { title: string }) => {
+  const { setRightPanelState } = useLayoutStore()
+
+  return (
+    <div className="flex items-center justify-between px-4 py-5">
+      <p className="font-bold">{title}</p>
+      <Tooltip label="Close" spacing={10}>
+        <button
+          onClick={() => setRightPanelState(null)}
+          aria-label="close right panel"
+        >
+          <LiaTimesSolid size="1.3rem" />
+        </button>
+      </Tooltip>
+    </div>
+  )
+}

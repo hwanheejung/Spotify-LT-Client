@@ -4,17 +4,14 @@ import { useQuery } from '@apollo/client/react'
 import { match, P } from 'ts-pattern'
 import { GET_AVAILABLE_DEVICES } from '@/entities/devices'
 import type { GetAvailableDevicesQuery } from '@/shared/graphql'
-import { SidebarHeader } from '../sidebar-header'
-import CurrentDevice from './CurrentDevice'
-import CurrentDeviceSkeleton from './CurrentDevice.skeleton'
-import OtherDevices from './OtherDevices'
-import OtherDevicesSkeleton from './OtherDevices.skeleton'
+import { CurrentDevice, CurrentDeviceSkeleton } from './current-device'
+import { OtherDevices, OtherDevicesSkeleton } from './other-devices'
 
 type Device = NonNullable<
   NonNullable<GetAvailableDevicesQuery['availableDevices']>[number]
 >
 
-const Device = () => {
+const DevicePanel = () => {
   const { loading, error, data, refetch } = useQuery<GetAvailableDevicesQuery>(
     GET_AVAILABLE_DEVICES,
   )
@@ -51,7 +48,6 @@ const Device = () => {
 
         return (
           <div>
-            <SidebarHeader title="Connect to a device" />
             {currentDevice && <CurrentDevice {...currentDevice} />}
             <OtherDevices data={otherDevices} refetch={refetch} />
           </div>
@@ -60,10 +56,9 @@ const Device = () => {
     )
     .otherwise(() => (
       <div>
-        <SidebarHeader title="Connect to a device" />
         <div className="p-5 text-gray-200">No devices available</div>
       </div>
     ))
 }
 
-export default Device
+export { DevicePanel }

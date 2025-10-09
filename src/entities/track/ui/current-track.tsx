@@ -2,22 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { match, P } from 'ts-pattern'
 import type { GetQueueQuery } from '@/shared/graphql'
+import { Skeleton, SkeletonText } from '@/shared/ui'
 
 type CurrentTrack = NonNullable<
   NonNullable<GetQueueQuery['player']>['currentTrack']
 >
 
-interface CurrentTrackProps {
-  track: CurrentTrack
-}
-
-const NoTrack = () => (
-  <div className="flex items-center justify-center p-5 text-gray-200">
-    No track playing
-  </div>
-)
-
-const CurrentTrack = ({ track }: CurrentTrackProps) => {
+const CurrentTrack = ({ track }: TProps) => {
   return match(track)
     .with(
       {
@@ -62,7 +53,19 @@ const CurrentTrack = ({ track }: CurrentTrackProps) => {
         </div>
       ),
     )
-    .otherwise(() => <NoTrack />)
+    .otherwise(() => null)
 }
 
-export default CurrentTrack
+export { CurrentTrack, CurrentTrackSkeleton }
+
+const CurrentTrackSkeleton = () => (
+  <div>
+    <Skeleton className="mb-3 h-60 w-full" />
+    <SkeletonText width="5rem" lineHeight="1.5rem" className="mb-3" />
+    <SkeletonText width="8rem" lineHeight="1rem" />
+  </div>
+)
+
+type TProps = {
+  track: CurrentTrack
+}

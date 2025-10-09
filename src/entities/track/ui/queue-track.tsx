@@ -5,23 +5,9 @@ import Link from 'next/link'
 import { match, P } from 'ts-pattern'
 import { usePlaybackStore } from '@/features/play-track'
 import type { GetQueueQuery } from '@/shared/graphql'
+import { Skeleton, SkeletonText } from '@/shared/ui'
 
-type CurrentTrack = NonNullable<
-  NonNullable<GetQueueQuery['player']>['currentTrack']
->
-type QueueTrack = NonNullable<
-  NonNullable<GetQueueQuery['player']>['queue'][number]
->
-
-interface TrackProps {
-  track: QueueTrack | CurrentTrack
-}
-
-const NoTrack = () => (
-  <div className="text-gray-200">Track information unavailable</div>
-)
-
-const Track = ({ track }: TrackProps) => {
+const QueueTrack = ({ track }: TProps) => {
   const { currentTrack } = usePlaybackStore()
 
   return match(track)
@@ -77,7 +63,27 @@ const Track = ({ track }: TrackProps) => {
         )
       },
     )
-    .otherwise(() => <NoTrack />)
+    .otherwise(() => null)
 }
 
-export default Track
+export { QueueTrack, QueueTrackSkeleton }
+
+const QueueTrackSkeleton = () => (
+  <div className="flex items-center gap-3 py-3">
+    <Skeleton className="h-10 w-10 rounded-sm" />
+    <div className="flex-1">
+      <SkeletonText lines={2} />
+    </div>
+  </div>
+)
+
+type TProps = {
+  track: TQueueTrack | TCurrentTrack
+}
+
+type TCurrentTrack = NonNullable<
+  NonNullable<GetQueueQuery['player']>['currentTrack']
+>
+type TQueueTrack = NonNullable<
+  NonNullable<GetQueueQuery['player']>['queue'][number]
+>

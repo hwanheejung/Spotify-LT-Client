@@ -6,7 +6,7 @@ import { MdComputer, MdOutlineSpeaker } from 'react-icons/md'
 import { match, P } from 'ts-pattern'
 import { TRANSFER_PLAYBACK } from '@/features/play-track'
 import type { GetAvailableDevicesQuery } from '@/shared/graphql'
-import OtherDevicesSkeleton from './OtherDevices.skeleton'
+import { Skeleton, SkeletonText } from '@/shared/ui'
 
 type Device = NonNullable<
   NonNullable<GetAvailableDevicesQuery['availableDevices']>[number]
@@ -29,7 +29,7 @@ const OtherDevices = ({
             variables: { deviceId: id },
           })
           console.log(`Playback transferred to device ID: ${id}`)
-          await refetch()
+          refetch()
         } catch (err) {
           console.error(`Failed to transfer playback to device ID: ${id}`, err)
         }
@@ -85,4 +85,24 @@ const OtherDevices = ({
     ))
 }
 
-export default OtherDevices
+export { OtherDevices, OtherDevicesSkeleton }
+
+const OtherDevicesSkeleton = () => (
+  <div className="px-3 py-5">
+    <h3 className="pb-2 font-bold">Select another device</h3>
+    <DeviceItemSkeleton />
+    <DeviceItemSkeleton />
+    <DeviceItemSkeleton />
+  </div>
+)
+
+const DeviceItemSkeleton = () => (
+  <div className="flex items-center gap-2 py-3">
+    <Skeleton>
+      <span className="pb-1">
+        <IoPhonePortraitOutline size="1rem" />
+      </span>
+    </Skeleton>
+    <SkeletonText lines={1} width="10rem" />
+  </div>
+)
