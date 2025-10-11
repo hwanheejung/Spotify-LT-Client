@@ -25,12 +25,14 @@ export async function GET() {
     })
 
     // ④ BFF → BE: authRequestId, code_challenge, state 전달
-    const response = await authFetchInstance.post<TAuthStartResponse>(
+    const response = await authFetchInstance.get<TAuthStartResponse>(
       '/spotify-auth-url',
       {
-        state: authReqInstance.state,
-        code_challenge: authReqInstance.pkce.codeChallenge,
-        code_challenge_method: authReqInstance.pkce.codeChallengeMethod,
+        params: {
+          state: authReqInstance.state,
+          code_challenge: authReqInstance.pkce.codeChallenge,
+          code_challenge_method: authReqInstance.pkce.codeChallengeMethod,
+        },
       },
     )
 
