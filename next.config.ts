@@ -2,7 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   env: {
-    API_HOST: process.env.API_HOST,
+    API_HOST: process.env.NEXT_PUBLIC_API_HOST,
   },
   reactStrictMode: false,
   images: {

@@ -3,46 +3,63 @@ import {
   createAuthRequestInstance,
   createAuthRequestStorage,
 } from '@/features/login'
-import { post } from '@/lib/api/base'
+import { authFetchInstance } from '@/shared/api/auth-fetch-instance'
 
 type TAuthStartResponse = {
-  authorizationUrl: string
+  url: string
 }
 
 export async function GET() {
-  const authRequestInstance = createAuthRequestInstance()
-  const storage = createAuthRequestStorage()
-
   try {
+    const authReqInstance = createAuthRequestInstance()
+    const storage = createAuthRequestStorage()
+
     // ③ BFF: authRequestId, code_verifier, state 생성 후 storage에 저장
-    const { authRequestId, state, pkce } = authRequestInstance
     await storage.save({
-      key: `auth:request:${authRequestId}`,
+      key: `auth:request:${authReqInstance.authRequestId}`,
       value: JSON.stringify({
-        state: state,
-        codeVerifier: pkce.codeVerifier,
+        state: authReqInstance.state,
+        codeVerifier: authReqInstance.pkce.codeVerifier,
       }),
       ttlSec: 600,
     })
 
-    // ④ BFF → BE (/internal/auth/start): authRequestId, code_challenge, state 전달
-    const response = await post('/internal/auth/start', {
-      body: JSON.stringify({
-        auth_request_id: authRequestId,
-        state: state,
-        code_challenge: pkce.codeChallenge,
-        code_challenge_method: pkce.codeChallengeMethod,
-      }),
+    // ④ BFF → BE: authRequestId, code_challenge, state 전달
+    const response = await authFetchInstance.post<TAuthStartResponse>(
+      '/spotify-auth-url',
+      {
+        state: authReqInstance.state,
+        code_challenge: authReqInstance.pkce.codeChallenge,
+        code_challenge_method: authReqInstance.pkce.codeChallengeMethod,
+      },
+    )
+
+    const data = response.data
+
+    // authorizationUrl이 없으면 실패 응답
+    if (!data?.url) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: '인증 URL을 받아올 수 없습니다.',
+        },
+        { status: 500 },
+      )
+    }
+
+    // ⑤ BE → BFF: authorization_url 반환
+    return NextResponse.json({
+      success: true,
+      authorizationUrl: data.url,
     })
-
-    const data: TAuthStartResponse = response.data
-
-    // ⑤ BE → BFF: authorization_url 반환 → 302 Redirect
-    return NextResponse.redirect(data.authorizationUrl)
   } catch (error) {
-    console.error('[Auth Start] Error:', error)
+    console.error('Auth start error:', error)
+
     return NextResponse.json(
-      { error: 'Failed to start authentication' },
+      {
+        success: false,
+        message: '인증 요청에 실패했습니다.',
+      },
       { status: 500 },
     )
   }

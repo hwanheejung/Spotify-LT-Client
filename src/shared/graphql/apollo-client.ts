@@ -12,7 +12,7 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(
     const sessionId = cookieStore.get('sessionId')?.value || ''
 
     const httpLink = new HttpLink({
-      uri: `${process.env.API_HOST}/graphql`,
+      uri: `${process.env.NEXT_PUBLIC_API_HOST}/graphql`,
       credentials: 'include',
       fetchOptions: { cache: 'no-store' },
     })

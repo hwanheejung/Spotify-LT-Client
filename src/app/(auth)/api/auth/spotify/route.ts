@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
-import { post } from '@/lib/api/base'
+import { authFetchInstance } from '@/shared/api'
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl
@@ -20,11 +20,11 @@ export async function GET(request: NextRequest) {
 }
 
 const login = async (code: string) => {
-  const { data, headers } = await post(`/api/auth/spotify-callback`, {
-    body: JSON.stringify({ code }),
+  const response = await authFetchInstance.post('/spotify-callback', {
+    code,
   })
 
-  const sessionId = extractSessionId(headers.get('set-cookie')!)
+  const sessionId = extractSessionId(response.headers.get('set-cookie')!)
   const cookieStore = await cookies()
   cookieStore.set({
     name: 'sessionId',
@@ -33,7 +33,7 @@ const login = async (code: string) => {
     path: '/',
   })
 
-  return data
+  return response.data
 }
 
 const extractSessionId = (encodedString: string) => {

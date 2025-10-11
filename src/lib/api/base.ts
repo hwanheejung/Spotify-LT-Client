@@ -11,7 +11,7 @@ const ERRORS = {
 }
 
 const getBaseUrl = (useMocked: boolean) =>
-  useMocked ? 'http://localhost:3001' : process.env.API_HOST
+  useMocked ? 'http://localhost:3001' : process.env.NEXT_PUBLIC_API_HOST
 
 const fetchApi = async (
   path: string,

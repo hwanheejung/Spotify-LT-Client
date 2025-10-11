@@ -6,7 +6,7 @@ import { deleteApi, get } from './base'
 
 export const logout = async () => {
   try {
-    await deleteApi('/api/auth/logout')
+    // await deleteApi('/api/auth/logout')
   } catch (error) {
     console.error('Logout error:', error)
   } finally {

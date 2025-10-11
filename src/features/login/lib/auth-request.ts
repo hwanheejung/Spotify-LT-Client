@@ -39,4 +39,4 @@ class AuthRequest implements TAuthRequestContract {
 const createAuthRequestInstance = () => new AuthRequest()
 const createAuthRequestStorage = () => new InMemoryStorage()
 
-export { createAuthRequestInstance, createAuthRequestStorage }
+export { AuthRequest, createAuthRequestInstance, createAuthRequestStorage }

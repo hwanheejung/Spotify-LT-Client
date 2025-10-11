@@ -10,7 +10,7 @@ import {
 function makeClient() {
   const httpLink = new HttpLink({
     // this needs to be an absolute url, as relative urls cannot be used in SSR
-    uri: `${process.env.API_HOST}/graphql`,
+    uri: `${process.env.NEXT_PUBLIC_API_HOST}/graphql`,
     credentials: 'include',
     fetchOptions: {
       cache: 'no-store',
