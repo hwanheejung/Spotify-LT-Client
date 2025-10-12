@@ -2,16 +2,9 @@ import Link from 'next/link'
 import { FaSpotify } from 'react-icons/fa'
 import { GrHomeRounded } from 'react-icons/gr'
 import { SearchBar } from '@/features/search'
-import { logout } from '@/lib/api/auth'
 import { Profile } from './profile'
 
-const Header = async () => {
-  const signout = async () => {
-    'use server'
-
-    await logout()
-  }
-
+const Header = () => {
   return (
     <div className="flex w-full items-center justify-between px-5 py-3">
       <Logo />
@@ -19,7 +12,7 @@ const Header = async () => {
         <Home />
         <SearchBar />
       </div>
-      <Profile logout={signout} />
+      <Profile />
     </div>
   )
 }

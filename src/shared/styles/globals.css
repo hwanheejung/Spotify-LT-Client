@@ -3,14 +3,14 @@
 /* Spotify Color Palette */
 @theme {
   /* Spotify Brand Colors */
-  --color-spotifyGreen: #1db954;
-  --color-spotifyGreenHover: #1ed760;
-  --color-spotifyGreenDark: #1aa34a;
-  --color-spotifyBlack: #191414;
-  --color-spotifyDarkGray: #121212;
-  --color-spotifyGray: #282828;
-  --color-spotifyLightGray: #535353;
-  --color-spotifyWhite: #ffffff;
+  --color-spotify-green: #1db954;
+  --color-spotify-green-hover: #1ed760;
+  --color-spotify-green-dark: #1aa34a;
+  --color-spotify-black: #191414;
+  --color-spotify-dark-gray: #121212;
+  --color-spotify-gray: #282828;
+  --color-spotify-light-gray: #535353;
+  --color-spotify-white: #ffffff;
 
   /* Gray scale for Tailwind classes (bg-gray-*, text-gray-*, etc) */
   --color-gray-0: #ffffff;
@@ -91,7 +91,7 @@
 /* Custom Components */
 @layer components {
   .spotify-button {
-    @apply bg-spotifyGreen hover:bg-spotifyGreenHover text-white font-bold py-2 px-4 rounded-full transition-colors duration-200;
+    @apply bg-spotify-green hover:bg-spotify-green-hover text-white font-bold py-2 px-4 rounded-full transition-colors duration-200;
   }
 
   .spotify-button-secondary {
@@ -103,7 +103,7 @@
   }
 
   .spotify-input {
-    @apply bg-gray-400 border border-gray-300 text-gray-0 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-spotifyGreen focus:border-transparent;
+    @apply bg-gray-400 border border-gray-300 text-gray-0 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-spotify-green focus:border-transparent;
   }
 }
 
@@ -111,7 +111,7 @@
 .range-slider {
   background: linear-gradient(
     to right,
-    var(--color-spotifyGreen) var(--progress, 0%),
+    var(--color-spotify-green) var(--progress, 0%),
     var(--color-gray-300) var(--progress, 0%)
   );
 }
