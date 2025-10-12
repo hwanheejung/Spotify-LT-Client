@@ -1,7 +1,7 @@
 'use client'
 
 import { FaSpotify } from 'react-icons/fa'
-import { logout } from '@/lib/api/auth'
+import { logoutAction } from '@/features/login'
 import { usePremiumStore } from '../model/premium-store'
 
 const PremiumRequiredModal = () => {
@@ -49,7 +49,7 @@ const PremiumRequiredModal = () => {
             </button>
 
             <button
-              onClick={logout}
+              onClick={logoutAction}
               className="w-full bg-transparent border border-gray-300 text-gray-0 hover:bg-gray-600 font-medium py-3 px-6 rounded-full transition-colors duration-200"
             >
               Logout

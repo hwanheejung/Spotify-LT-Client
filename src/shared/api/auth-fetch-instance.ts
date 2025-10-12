@@ -1,7 +1,7 @@
 import { Fetch } from './fetch'
 
 const createAuthFetchInstance = (destination: 'BE' | 'BFF') => {
-  const fetchInstance = new Fetch({
+  return new Fetch({
     baseURL:
       destination === 'BFF'
         ? `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth`
@@ -40,8 +40,6 @@ const createAuthFetchInstance = (destination: 'BE' | 'BFF') => {
       cache: 'no-store',
     },
   })
-
-  return fetchInstance
 }
 
 const authFetchInstance = createAuthFetchInstance('BE')

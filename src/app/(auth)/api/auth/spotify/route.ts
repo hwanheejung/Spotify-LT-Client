@@ -1,7 +1,7 @@
-import { authStorage } from '@/features/login'
-import { authFetchInstance } from '@/shared/api'
 import { cookies } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
+import { authStorage } from '@/features/login'
+import { authFetchInstance } from '@/shared/api'
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl

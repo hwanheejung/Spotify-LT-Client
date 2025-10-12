@@ -4,7 +4,7 @@
 
 import { useCallback, useEffect, useRef } from 'react'
 import { usePlaybackStore } from '@/features/play-track'
-import { getSpotifyToken } from '@/lib/api/auth'
+import { authFetchInstance } from '@/shared/api'
 import { usePremiumStore } from '../model/premium-store'
 
 const useWebPlayback = () => {
@@ -112,7 +112,11 @@ const useWebPlayback = () => {
   }, [])
 
   const initializePlayer = useCallback(async () => {
-    const token = await getSpotifyToken()
+    const { data } = await authFetchInstance.get<{ token: string }>(
+      '/spotify-token',
+    )
+
+    if (!data?.token) return
     const script = document.createElement('script')
     script.src = 'https://sdk.scdn.co/spotify-player.js'
     script.async = true
@@ -122,7 +126,7 @@ const useWebPlayback = () => {
 
     const player = new window.Spotify.Player({
       name: playerName,
-      getOAuthToken: (cb) => cb(token),
+      getOAuthToken: (cb) => cb(data.token),
       volume: 0.5,
     })
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { logoutAction } from '@/features/login'
 import {
   Divider,
   Menu,
@@ -9,12 +10,16 @@ import {
   Tooltip,
 } from '@/shared/ui'
 
-const Profile = ({ logout }: { logout: () => Promise<void> }) => {
+const Profile = () => {
+  const handleLogout = async () => {
+    await logoutAction()
+  }
+
   return (
     <Menu placement="bottom-end">
       <Tooltip label="Name" placement="bottom">
         <MenuButton as="button" aria-label="Profile">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-spotifyGreen/30 p-1.5">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-spotify-green/30 p-1.5">
             <div className="h-full w-full rounded-full bg-spotifyGreen" />
           </div>
         </MenuButton>
@@ -24,7 +29,7 @@ const Profile = ({ logout }: { logout: () => Promise<void> }) => {
         <MenuItem>Profile</MenuItem>
         <MenuItem>Settings</MenuItem>
         <Divider />
-        <MenuItem onClick={logout}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </MenuList>
     </Menu>
   )
