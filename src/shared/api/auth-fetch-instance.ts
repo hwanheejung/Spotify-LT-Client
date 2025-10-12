@@ -13,8 +13,6 @@ const createAuthFetchInstance = (destination: 'BE' | 'BFF') => {
           headers: {
             ...config.headers,
             'Content-Type': 'application/json',
-            'X-Client-Version': '1.0.0',
-            'X-Platform': 'web',
           },
         }
       },

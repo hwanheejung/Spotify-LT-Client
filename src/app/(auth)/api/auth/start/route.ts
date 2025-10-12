@@ -1,9 +1,6 @@
-import { NextResponse } from 'next/server'
-import {
-  createAuthRequestInstance,
-  createAuthRequestStorage,
-} from '@/features/login'
+import { authStorage, createAuthRequestInstance } from '@/features/login'
 import { authFetchInstance } from '@/shared/api/auth-fetch-instance'
+import { NextResponse } from 'next/server'
 
 type TAuthStartResponse = {
   url: string
@@ -12,15 +9,13 @@ type TAuthStartResponse = {
 export async function GET() {
   try {
     const authReqInstance = createAuthRequestInstance()
-    const storage = createAuthRequestStorage()
+    const storage = authStorage()
 
     // ③ BFF: authRequestId, code_verifier, state 생성 후 storage에 저장
     await storage.save({
-      key: `auth:request:${authReqInstance.authRequestId}`,
-      value: JSON.stringify({
-        state: authReqInstance.state,
-        codeVerifier: authReqInstance.pkce.codeVerifier,
-      }),
+      authRequestId: authReqInstance.authRequestId,
+      state: authReqInstance.state,
+      codeVerifier: authReqInstance.pkce.codeVerifier,
       ttlSec: 600,
     })
 
@@ -29,7 +24,7 @@ export async function GET() {
       '/spotify-auth-url',
       {
         params: {
-          state: authReqInstance.state,
+          state: `${authReqInstance.authRequestId}:${authReqInstance.state}`,
           code_challenge: authReqInstance.pkce.codeChallenge,
           code_challenge_method: authReqInstance.pkce.codeChallengeMethod,
         },

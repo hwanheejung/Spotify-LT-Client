@@ -1,5 +1,4 @@
 import { randomBytes } from 'node:crypto'
-import { InMemoryStorage } from '@/shared/lib/storage'
 import { Pkce } from './pkce'
 
 type TAuthRequestContract = {
@@ -37,6 +36,5 @@ class AuthRequest implements TAuthRequestContract {
 }
 
 const createAuthRequestInstance = () => new AuthRequest()
-const createAuthRequestStorage = () => new InMemoryStorage()
 
-export { AuthRequest, createAuthRequestInstance, createAuthRequestStorage }
+export { AuthRequest, createAuthRequestInstance }
